@@ -1,4 +1,4 @@
-import { afterEach, describe, expect, it } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import { renderToStaticMarkup } from 'react-dom/server';
 import {
   getLocalArtifactBySlug,
@@ -62,6 +62,7 @@ if (!quiz) throw new Error('Fixture quiz missing');
 
 const debriefProps: MissionDebriefFeatureProps = {
   quiz,
+  artifact,
   onOpenSource: noopSource,
 };
 
@@ -70,6 +71,24 @@ const routeProps: GuidedRouteFeatureProps = {
   artifacts: [artifact, marsArtifact],
   onSelectArtifact: noopSelect,
 };
+
+/**
+ * The registry auto-discovers real register.tsx modules on import. These tests
+ * assert placeholder behavior, so every real registration is removed first to
+ * keep the tests deterministic regardless of discovery timing.
+ */
+beforeEach(() => {
+  for (const key of [
+    'atlas',
+    'moonStories',
+    'marsStories',
+    'afterlife',
+    'scienceEvidence',
+    'missionDebrief',
+  ] as const) {
+    unregisterFeature(key);
+  }
+});
 
 afterEach(() => {
   unregisterFeature('atlas');

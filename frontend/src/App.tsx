@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react';
+import { useMemo, type ReactNode } from 'react';
 import { DEMO_MODE_LABEL, type Body } from '@echoes/shared';
 import {
   AfterlifeSlot,
@@ -9,6 +9,7 @@ import {
   MoonStoriesSlot,
   ScienceEvidenceSlot,
 } from './features/integration/FeatureRegistry';
+import type { AtlasFeatureLocation } from './features/integration/featureTypes';
 import { useEchoesApp, type DestinationFilter } from './app/useEchoesApp';
 
 const DESTINATIONS: Array<{ value: DestinationFilter; label: string }> = [
@@ -62,6 +63,30 @@ export default function App() {
     retry,
   } = useEchoesApp();
 
+  /**
+   * Location index for the Atlas map, keyed by slug. Labels and coordinates
+   * are copied verbatim from the hydrated verified records.
+   */
+  const artifactLocations = useMemo(() => {
+    const index: Record<string, AtlasFeatureLocation> = {};
+    for (const artifact of artifacts) {
+      const coordinates = artifact.location.coordinates;
+      index[artifact.slug] = {
+        label: artifact.location.label,
+        confidence: artifact.location.confidence,
+        ...(coordinates
+          ? {
+              coordinates: {
+                lat: coordinates.latitude,
+                lon: coordinates.longitude,
+              },
+            }
+          : {}),
+      };
+    }
+    return index;
+  }, [artifacts]);
+
   return (
     <div className="app-shell">
       <header className="hero">
@@ -77,6 +102,27 @@ export default function App() {
             {sourceMode === 'demo' ? DEMO_MODE_LABEL : 'LIVE API'}
           </span>
           <span className="badge">{artifacts.length} records hydrated</span>
+        </div>
+        <div className="hero__stats" aria-label="Archive overview">
+          <span className="stat">
+            <span className="stat__value">{artifacts.length}</span>
+            <span className="stat__label">verified records</span>
+          </span>
+          <span className="stat__sep" aria-hidden="true">·</span>
+          <span className="stat">
+            <span className="stat__value">{artifacts.filter((a) => a.body === 'moon').length}</span>
+            <span className="stat__label">Moon</span>
+          </span>
+          <span className="stat__sep" aria-hidden="true">·</span>
+          <span className="stat">
+            <span className="stat__value">{artifacts.filter((a) => a.body === 'mars').length}</span>
+            <span className="stat__label">Mars</span>
+          </span>
+          <span className="stat__sep" aria-hidden="true">·</span>
+          <span className="stat">
+            <span className="stat__value">{routes.length}</span>
+            <span className="stat__label">curated routes</span>
+          </span>
         </div>
       </header>
 
@@ -177,6 +223,7 @@ export default function App() {
             records={records}
             selectedArtifactId={selectedSlug}
             onSelectArtifact={selectArtifact}
+            locations={artifactLocations}
           />
         </Panel>
 
@@ -215,7 +262,11 @@ export default function App() {
 
             <Panel title="6a. Mission Debrief">
               {quiz ? (
-                <MissionDebriefSlot quiz={quiz} onOpenSource={openSource} />
+                <MissionDebriefSlot
+                  quiz={quiz}
+                  artifact={selectedArtifact}
+                  onOpenSource={openSource}
+                />
               ) : (
                 <p className="muted">
                   No verified debrief is available for this artifact yet.
@@ -225,10 +276,20 @@ export default function App() {
           </>
         ) : (
           <Panel title="Artifact story">
-            <p className="muted">
-              Select a verified record in the Atlas placeholder to load the same artifact
-              into the Moon or Mars storybook, timeline, science evidence and debrief.
-            </p>
+            <div className="empty-state">
+              <span className="empty-state__icon" aria-hidden="true">
+                🌙
+              </span>
+              <h3 className="empty-state__title">Choose a verified record</h3>
+              <p className="empty-state__body">
+                Open an artifact in the Atlas to load its Moon or Mars storybook,
+                timeline, science evidence and mission debrief side by side.
+              </p>
+              <p className="muted empty-state__note">
+                Only verified records appear by default. Records under editorial
+                review are held out until a second editor signs off.
+              </p>
+            </div>
           </Panel>
         )}
 
@@ -245,8 +306,13 @@ export default function App() {
         <p>
           Only <strong>verified</strong> records appear by default. NSSDCA archive wording is
           preserved alongside simplified wording, with claim-level sources and source-check
-          dates. Feature panels are typed integration placeholders until teammate interfaces
-          register themselves.
+          dates. Feature panels register themselves through the typed feature registry; the
+          guided route panel remains a typed placeholder until its owner ships.
+        </p>
+        <p className="muted">
+          Archive data courtesy of NASA NSSDCA Master Catalog. All records were
+          source-checked on 2026-11-14 and are reproduced with simplified wording
+          alongside the original archive text.
         </p>
       </footer>
 

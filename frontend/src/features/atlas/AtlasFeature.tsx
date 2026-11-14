@@ -20,12 +20,157 @@ export interface ArtifactSummary {
   };
   imageUrl?: string;
   aliases?: string[];
+  /** Archived location text; coordinates only when the record provides them. */
+  location?: ArtifactMapLocation;
+}
+
+export interface ArtifactMapLocation {
+  label: string;
+  confidence?: string;
+  coordinates?: { lat: number; lon: number };
 }
 
 interface AtlasFeatureProps {
   records: ArtifactSummary[];
   selectedArtifactId: string | null;
   onSelectArtifact: (id: string) => void;
+}
+
+const BODIES = ["Moon", "Mars"] as const;
+
+/**
+ * Wraps archive longitudes into [-180, 180) for the equirectangular
+ * projection only. Displayed text always shows the recorded value.
+ */
+function wrapLongitude(lon: number): number {
+  return ((((lon + 180) % 360) + 360) % 360) - 180;
+}
+
+function BodyMap({
+  body,
+  items,
+  selectedArtifactId,
+  onSelectArtifact,
+}: {
+  body: (typeof BODIES)[number];
+  items: ArtifactSummary[];
+  selectedArtifactId: string | null;
+  onSelectArtifact: (id: string) => void;
+}) {
+  const located = items.filter((item) => item.location?.coordinates);
+  const unmapped = items.filter((item) => !item.location?.coordinates);
+  if (located.length === 0 && unmapped.length === 0) return null;
+
+  const listItems = [...located, ...unmapped];
+
+  return (
+    <section className="atlas-map" aria-label={`${body} artifact map`}>
+      <h2>{body} map</h2>
+      {located.length > 0 && (
+        <div className="atlas-map__stage">
+          <svg
+            viewBox="0 0 360 180"
+            role="img"
+            aria-label={`Schematic ${body} map in equirectangular projection. Marker positions come only from coordinates recorded in the archive.`}
+          >
+            <rect
+              x="0"
+              y="0"
+              width="360"
+              height="180"
+              rx="8"
+              className="atlas-map__surface"
+            />
+            {[30, 60, 90, 120, 150].map((y) => (
+              <line
+                key={`h-${y}`}
+                x1="0"
+                x2="360"
+                y1={y}
+                y2={y}
+                className="atlas-map__grid"
+              />
+            ))}
+            {[30, 60, 90, 120, 150, 180, 210, 240, 270, 300, 330].map((x) => (
+              <line
+                key={`v-${x}`}
+                x1={x}
+                x2={x}
+                y1="0"
+                y2="180"
+                className="atlas-map__grid"
+              />
+            ))}
+            <line
+              x1="0"
+              x2="360"
+              y1="90"
+              y2="90"
+              className="atlas-map__equator"
+            />
+          </svg>
+          {located.map((item) => {
+            const location = item.location;
+            const coords = location?.coordinates;
+            if (!location || !coords) return null;
+
+            const left = ((wrapLongitude(coords.lon) + 180) / 360) * 100;
+            const top = ((90 - coords.lat) / 180) * 100;
+            const isSelected = selectedArtifactId === item.id;
+
+            return (
+              <button
+                key={item.id}
+                type="button"
+                className={`atlas-map__marker ${isSelected ? "active" : ""}`}
+                style={{ left: `${left}%`, top: `${top}%` }}
+                aria-pressed={isSelected}
+                aria-label={`${item.name} — ${location.label} (${location.confidence ?? "unspecified"} location)`}
+                title={`${item.name} — ${location.label}`}
+                onClick={() => onSelectArtifact(item.id)}
+              >
+                <span aria-hidden="true">●</span>
+              </button>
+            );
+          })}
+        </div>
+      )}
+      <ul className="atlas-map__list">
+        {listItems.map((item) => {
+          const location = item.location;
+          const coords = location?.coordinates;
+          return (
+            <li key={item.id}>
+              <button type="button" onClick={() => onSelectArtifact(item.id)}>
+                {item.name}
+              </button>{" "}
+              {location ? (
+                <>
+                  — {location.label}
+                  {coords && (
+                    <span className="atlas-map__coords">
+                      {" "}
+                      ({coords.lat}°, {coords.lon}° as recorded)
+                    </span>
+                  )}
+                  {location.confidence && (
+                    <span> · {location.confidence} location</span>
+                  )}
+                </>
+              ) : (
+                <span> — location text is not listed in the source record</span>
+              )}
+            </li>
+          );
+        })}
+      </ul>
+      <p className="atlas-map__note">
+        Marker positions use only the coordinates recorded in each artifact's
+        archive source; nothing is inferred. Artifacts without recorded
+        coordinates appear in the list only.
+      </p>
+    </section>
+  );
 }
 
 export default function AtlasFeature({
@@ -118,6 +263,20 @@ export default function AtlasFeature({
           Reset
         </button>
       </section>
+
+      {BODIES.map((body) => {
+        const items = filteredRecords.filter((item) => item.body === body);
+        if (items.length === 0) return null;
+        return (
+          <BodyMap
+            key={body}
+            body={body}
+            items={items}
+            selectedArtifactId={selectedArtifactId}
+            onSelectArtifact={onSelectArtifact}
+          />
+        );
+      })}
 
       <section className="atlas-results">
         <h2>Artifact Collection</h2>

@@ -10,6 +10,7 @@ import type {
   Artifact,
   CatalogEntry,
   GuidedRoute,
+  LocationConfidence,
   Quiz,
   Source,
   StoryChapter,
@@ -19,12 +20,24 @@ export type OpenSourceHandler = (source: Source) => void;
 export type SelectArtifactHandler = (artifactSlug: string) => void;
 export type SelectChapterHandler = (chapter: StoryChapter) => void;
 
+/**
+ * Archived location text for one artifact, keyed by slug. Coordinates are
+ * copied verbatim from the verified record; the map never adds precision.
+ */
+export interface AtlasFeatureLocation {
+  label: string;
+  confidence?: LocationConfidence;
+  coordinates?: { lat: number; lon: number };
+}
+
 /** 1. NSSDCA Archive Atlas. */
 export interface AtlasFeatureProps {
   records: CatalogEntry[];
   /** Artifact slug, the canonical selection key owned by the parent. */
   selectedArtifactId: string | null;
   onSelectArtifact: SelectArtifactHandler;
+  /** Location index built by the parent from hydrated artifact records. */
+  locations?: Record<string, AtlasFeatureLocation>;
 }
 
 /** 2. Moon Artifact Storybook. */
@@ -55,6 +68,11 @@ export interface ScienceEvidenceFeatureProps {
 /** 6a. Mission Debrief. */
 export interface MissionDebriefFeatureProps {
   quiz: Quiz;
+  /**
+   * The selected artifact. The registration adapter uses it to resolve quiz
+   * source ids into full Source objects for the parent evidence drawer.
+   */
+  artifact: Artifact;
   onOpenSource: OpenSourceHandler;
 }
 

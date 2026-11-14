@@ -136,32 +136,40 @@ const discoveryModules = import.meta.glob('../*/register.tsx') as Record<
 
 /**
  * Loads every sibling feature registration module. Each module is isolated:
- * an exception is logged and the placeholder remains in place.
+ * an exception is logged and the placeholder remains in place. A module may
+ * export a single default defineFeature({ key, component }) object or an
+ * array of them (when one folder registers several keys).
  */
 export async function discoverFeatures(): Promise<void> {
   await Promise.all(
     Object.entries(discoveryModules).map(async ([modulePath, load]) => {
       try {
         const loaded = (await load()) as { default?: unknown };
-        const registration = loaded.default as
-          | { key?: unknown; component?: unknown }
-          | undefined;
+        const registrations: unknown[] = Array.isArray(loaded.default)
+          ? loaded.default
+          : [loaded.default];
 
-        if (
-          !registration ||
-          typeof registration.key !== 'string' ||
-          !isFeatureKey(registration.key) ||
-          !registration.component
-        ) {
-          console.warn(
-            `[echoes] Ignoring invalid feature registration exported by ${modulePath}. ` +
-              'Expected default defineFeature({ key, component }).',
-          );
-          return;
+        for (const registration of registrations) {
+          const candidate = registration as
+            | { key?: unknown; component?: unknown }
+            | undefined;
+
+          if (
+            !candidate ||
+            typeof candidate.key !== 'string' ||
+            !isFeatureKey(candidate.key) ||
+            !candidate.component
+          ) {
+            console.warn(
+              `[echoes] Ignoring invalid feature registration exported by ${modulePath}. ` +
+                'Expected a default defineFeature({ key, component }) or an array of them.',
+            );
+            continue;
+          }
+
+          registry.set(candidate.key, candidate.component as AnyFeatureComponent);
+          emit();
         }
-
-        registry.set(registration.key, registration.component as AnyFeatureComponent);
-        emit();
       } catch (error) {
         console.error(`[echoes] Failed to load feature module ${modulePath}:`, error);
       }
