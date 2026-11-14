@@ -1,32 +1,43 @@
-Echoes — Off-World Field Guide
+# Echoes - Off-World Field Guide
 
-«The rover stopped. The discoveries kept moving.»
+> "The rover stopped. The discoveries kept moving."
 
-🚀 Live Project: "Explore Echoes" (https://echoes-off-world-field-guide.netlify.app/)
+**Live Project:** [Explore Echoes](https://echoes-off-world-field-guide.netlify.app/)
 
-"Launch Live Demo →" (https://echoes-off-world-field-guide.netlify.app/)
+**Live Demo:** [Launch Live Demo](https://echoes-off-world-field-guide.netlify.app/)
 
-An evidence-first, interactive field guide preserving the stories, engineering and scientific legacy of NASA hardware remaining on the Moon and Mars.
+An evidence-first, interactive field guide preserving the stories, engineering
+and scientific legacy of NASA hardware remaining on the Moon and Mars.
 
-Developed by Team Nullorbit for the NASA Space Apps Challenge 2026.
+Developed by **Team Nullorbit** for the **NASA Space Apps Challenge 2026**.
 
-"GitHub Repository" (https://github.com/yukthasmayya8/Echoes-Off-World-Field-Guide) · "Live Application" (https://echoes-off-world-field-guide.netlify.app/)
+[GitHub Repository](https://github.com/yukthasmayya8/Echoes-Off-World-Field-Guide) |
+[Live Application](https://echoes-off-world-field-guide.netlify.app/)
 
 ---
 
-1. The Problem
+## 1. The Problem
 
-Since the beginning of planetary exploration, NASA missions have left behind spacecraft, landers, rovers, instruments, descent stages and other equipment across extraterrestrial surfaces.
+Since the beginning of planetary exploration, NASA missions have left behind
+spacecraft, landers, rovers, instruments, descent stages and other equipment
+across extraterrestrial surfaces.
 
-Some completed their planned missions. Others stopped communicating, while the present physical condition of certain artifacts remains uncertain.
+Some completed their planned missions. Others stopped communicating, while the
+present physical condition of certain artifacts remains uncertain.
 
-Yet, the end of a spacecraft's operational life does not mark the end of its scientific or historical significance.
+Yet, the end of a spacecraft's operational life does not mark the end of its
+scientific or historical significance.
 
-These artifacts represent decades of engineering decisions, scientific experiments, technological progress and discoveries that expanded our understanding of the Solar System.
+These artifacts represent decades of engineering decisions, scientific
+experiments, technological progress and discoveries that expanded our
+understanding of the Solar System.
 
-However, their stories are often distributed across archival catalogs, mission reports and technical documentation. Making these records understandable and engaging for younger audiences is a challenge in itself.
+However, their stories are often distributed across archival catalogs, mission
+reports and technical documentation. Making these records understandable and
+engaging for younger audiences is a challenge in itself.
 
-The challenge is therefore not simply to identify what NASA left behind, but to communicate:
+The challenge is therefore not simply to identify what NASA left behind, but to
+communicate:
 
 - What was the equipment designed to accomplish?
 - What engineering made its mission possible?
@@ -34,11 +45,14 @@ The challenge is therefore not simply to identify what NASA left behind, but to 
 - What happened after its operational life ended?
 - What do historical records establish, and what remains unknown?
 
-2. Our Solution — Echoes
+## 2. Our Solution - Echoes
 
-Echoes transforms archival mission records into an interactive digital field guide for school-age space enthusiasts, educators and curious explorers.
+Echoes transforms archival mission records into an interactive digital field
+guide for school-age space enthusiasts, educators and curious explorers.
 
-Instead of presenting retired spacecraft as forgotten objects, Echoes treats them as the starting point for exploring the engineering, missions, people and scientific discoveries behind planetary exploration.
+Instead of presenting retired spacecraft as forgotten objects, Echoes treats
+them as the starting point for exploring the engineering, missions, people and
+scientific discoveries behind planetary exploration.
 
 The platform combines:
 
@@ -50,76 +64,97 @@ The platform combines:
 - Historical afterlife and legacy documentation.
 - Guided learning routes and classroom resources.
 
-The Echoes Learning Journey
+### The Echoes Learning Journey
 
-Find → Understand → Connect → Investigate → Remember
+1. **Find:** Discover spacecraft and mission artifacts through the Planetary
+   Atlas and global search.
+2. **Understand:** Explore mission histories through narrated stories and
+   interactive timelines.
+3. **Connect:** Examine how engineering systems and scientific instruments
+   contributed to discoveries.
+4. **Investigate:** Evaluate historical claims using source references, evidence
+   activities and documented unknowns.
+5. **Remember:** Explore artifact relationships, compare missions, complete
+   learning activities and preserve progress through the Discovery Passport.
 
-1. Find: Discover spacecraft and mission artifacts through the Planetary Atlas and global search.
-2. Understand: Explore their mission histories through narrated stories and interactive timelines.
-3. Connect: Examine how engineering systems and scientific instruments contributed to discoveries.
-4. Investigate: Evaluate historical claims using source references, evidence activities and documented unknowns.
-5. Remember: Explore artifact relationships, compare missions, complete learning activities and preserve progress through the Discovery Passport.
+Our central principle is simple: storytelling should make scientific history
+accessible without compromising the evidence behind it.
 
-Our central principle is simple: storytelling should make scientific history accessible without compromising the evidence behind it.
+## 3. What Makes Echoes Different?
 
-3. What Makes Echoes Different?
+### Evidence-first storytelling
 
-Evidence-first storytelling
+Echoes maintains original archival wording alongside simplified explanations,
+allowing visitors to understand historical information while retaining access
+to its documentary basis.
 
-Echoes maintains original archival wording alongside simplified explanations, allowing visitors to understand historical information while retaining access to its documentary basis.
+Claims, narrative chapters, timeline events and scientific discoveries are
+associated with source references.
 
-Claims, narrative chapters, timeline events and scientific discoveries are associated with source references.
+### Engineering connected to scientific discovery
 
-Engineering connected to scientific discovery
+Rather than stopping at mission descriptions, Echoes encourages visitors to
+investigate the hardware itself, understand its purpose and connect engineering
+decisions to scientific outcomes.
 
-Rather than stopping at mission descriptions, Echoes encourages visitors to investigate the hardware itself, understand its purpose and connect engineering decisions to scientific outcomes.
+### Explicit uncertainty representation
 
-Explicit uncertainty representation
+Not every historical record establishes the present condition or exact location
+of an artifact.
 
-Not every historical record establishes the present condition or exact location of an artifact.
+Echoes distinguishes verified information, approximate location information,
+documented uncertainty and missing dataset information instead of presenting
+unsupported assumptions as facts.
 
-Echoes distinguishes verified information, approximate location information, documented uncertainty and missing dataset information instead of presenting unsupported assumptions as facts.
+### Interactive learning rather than passive reading
 
-Interactive learning rather than passive reading
+Visitors can investigate claims, explore mission chronologies, compare
+artifacts, follow curated journeys and participate in guided archaeological
+investigations.
 
-Visitors can investigate claims, explore mission chronologies, compare artifacts, follow curated journeys and participate in guided archaeological investigations.
+### Accessibility and educational usability
 
-Accessibility and educational usability
+The experience incorporates browser-based narration, keyboard-friendly
+interactions, responsive layouts, local progress tracking and teacher-oriented
+learning resources.
 
-The experience incorporates browser-based narration, keyboard-friendly interactions, responsive layouts, local progress tracking and teacher-oriented learning resources.
-
-4. Current Artifact Archive
+## 4. Current Artifact Archive
 
 The prototype currently contains four verified, source-linked artifact records.
 
-Artifact| Planetary body| Archive status
-Apollo 11 Lunar Module Eagle| Moon| Verified
-Surveyor 3| Moon| Verified
-Mars Pathfinder Lander (Sagan Memorial Station)| Mars| Verified
-Sojourner| Mars| Verified
+| Artifact | Planetary Body | Archive Status |
+| --- | --- | --- |
+| Apollo 11 Lunar Module Eagle | Moon | Verified |
+| Surveyor 3 | Moon | Verified |
+| Mars Pathfinder Lander (Sagan Memorial Station) | Mars | Verified |
+| Sojourner | Mars | Verified |
 
-An additional record, Apollo 12 Lunar Module Intrepid, is present with "needs_review" status. It is intentionally excluded from normal search, artifact details, guided routes and quizzes until its review status is resolved.
+An additional record, Apollo 12 Lunar Module Intrepid, is present with
+`needs_review` status. It is intentionally excluded from normal search, artifact
+details, guided routes and quizzes until its review status is resolved.
 
 We deliberately prioritise source quality and traceability over archive size.
 
-Curated Exploration Routes
+### Curated Exploration Routes
 
 - The Moon: What We Left Behind
 - Mars: A Lander and Its Rover
 
-The Mars route connects the Pathfinder lander and Sojourner, allowing visitors to explore their related mission histories in sequence.
+The Mars route connects the Pathfinder lander and Sojourner, allowing visitors
+to explore their related mission histories in sequence.
 
-5. Features and Learning Modules
+## 5. Features and Learning Modules
 
 Echoes is organised into interconnected exploration and learning experiences.
 
-A. Explore and Orient
+### A. Explore and Orient
 
-Mission Control Dashboard
+#### Mission Control Dashboard
 
-Provides a focused starting point for exploring the archive, discovering featured artifacts and navigating the field guide.
+Provides a focused starting point for exploring the archive, discovering
+featured artifacts and navigating the field guide.
 
-Planetary Atlas
+#### Planetary Atlas
 
 An interactive Moon and Mars location explorer featuring:
 
@@ -129,19 +164,22 @@ An interactive Moon and Mars location explorer featuring:
 - Selected-location information panel.
 - Zoom, pan and fullscreen controls.
 
-Location precision is presented according to the underlying archival information rather than assumed accuracy.
+Location precision is presented according to the underlying archival information
+rather than assumed accuracy.
 
-Global Search
+#### Global Search
 
-Allows visitors to search the verified archive using artifact names, aliases, mission names, planetary bodies and NSSDCA identifiers.
+Allows visitors to search the verified archive using artifact names, aliases,
+mission names, planetary bodies and NSSDCA identifiers.
 
-Compare Artifacts
+#### Compare Artifacts
 
-Enables side-by-side comparison of mission characteristics and artifact afterlife information.
+Enables side-by-side comparison of mission characteristics and artifact
+afterlife information.
 
-B. Follow the Stories
+### B. Follow the Stories
 
-Storybook
+#### Storybook
 
 Every artifact has a five-chapter narrative experience.
 
@@ -152,47 +190,57 @@ It combines:
 - Chapter-specific source references.
 - Browser-based narration.
 
-Narration Player
+#### Narration Player
 
-Uses the browser Web Speech API to make artifact stories accessible through three narration styles:
+Uses the browser Web Speech API to make artifact stories accessible through
+three narration styles:
 
 - Documentary.
 - Young Explorer.
 - Scientific Deep Dive.
 
-It supports voice selection, speech-rate adjustment and sentence highlighting, subject to browser speech capabilities.
+It supports voice selection, speech-rate adjustment and sentence highlighting,
+subject to browser speech capabilities.
 
-Time Machine
+#### Time Machine
 
-An interactive chronological exploration of mission events, helping visitors understand how an artifact's operational history developed.
+An interactive chronological exploration of mission events, helping visitors
+understand how an artifact's operational history developed.
 
-Science Reveal
+#### Science Reveal
 
-Connects spacecraft hardware, experiments and observations with their resulting scientific discoveries.
+Connects spacecraft hardware, experiments and observations with their resulting
+scientific discoveries.
 
-Afterlife and Legacy
+#### Afterlife and Legacy
 
-Explores what happened after mission operations ended, including documented final mission events, operational status and the historical significance of what remains.
+Explores what happened after mission operations ended, including documented
+final mission events, operational status and the historical significance of
+what remains.
 
-Guided Routes
+#### Guided Routes
 
-Provides ordered, curated exploration journeys that connect related artifacts and mission histories.
+Provides ordered, curated exploration journeys that connect related artifacts
+and mission histories.
 
-C. Learn by Investigating
+### C. Learn by Investigating
 
-Artifact DNA
+#### Artifact DNA
 
-A hardware-focused explorer that introduces visitors to artifact components and their engineering significance.
+A hardware-focused explorer that introduces visitors to artifact components and
+their engineering significance.
 
-Evidence Detective
+#### Evidence Detective
 
-An interactive claim-evaluation activity in which visitors assess mission-related statements and receive feedback supported by evidence.
+An interactive claim-evaluation activity in which visitors assess
+mission-related statements and receive feedback supported by evidence.
 
-Space Archaeologist
+#### Space Archaeologist
 
-A guided, seven-step investigation encouraging visitors to examine an artifact through its characteristics, location, mission context and historical evidence.
+A guided, seven-step investigation encouraging visitors to examine an artifact
+through its characteristics, location, mission context and historical evidence.
 
-Fact Vault
+#### Fact Vault
 
 A searchable collection of sourced facts with filters covering:
 
@@ -202,33 +250,36 @@ A searchable collection of sourced facts with filters covering:
 - History.
 - Location.
 
-Unknowns Observatory
+#### Unknowns Observatory
 
 Highlights information that historical records do not establish.
 
-It distinguishes documented uncertainty from information that is simply absent from the current dataset, helping prevent unsupported conclusions.
+It distinguishes documented uncertainty from information that is simply absent
+from the current dataset, helping prevent unsupported conclusions.
 
-Explore Deeper
+#### Explore Deeper
 
-Provides source-grounded information retrieval over the curated artifact records.
+Provides source-grounded information retrieval over the curated artifact
+records, retaining the source context for the available information.
 
-Rather than generating unrestricted answers, it retrieves relevant information from the available records and retains their source context.
+#### Legacy Bridge
 
-Legacy Bridge
+Connects related artifacts and historical developments through their documented
+relationships.
 
-Connects related artifacts and historical developments through their documented relationships.
+#### Space Heritage
 
-Space Heritage
+Introduces broader space-heritage considerations through educational content
+and an interactive future-mission decision activity.
 
-Introduces broader space-heritage considerations through educational content and an interactive future-mission decision activity.
+#### NASA Resources
 
-NASA Resources
+Provides provenance information, source references, limitations and relevant
+attribution notes.
 
-Provides provenance information, source references, limitations and relevant attribution notes.
+### D. Support Learners and Educators
 
-D. Support Learners and Educators
-
-Discovery Passport
+#### Discovery Passport
 
 Provides anonymous, browser-local learning progress tracking.
 
@@ -239,15 +290,16 @@ It includes:
 - Saved artifacts.
 - Achievement badges.
 
-Progress is stored using browser localStorage. No visitor account is required.
+Progress is stored using browser `localStorage`. No visitor account is required.
 
-Teacher Mode
+#### Teacher Mode
 
-Provides educator-oriented learning material and an optional printable classroom kit.
+Provides educator-oriented learning material and an optional printable
+classroom kit.
 
 It helps translate artifact exploration into structured classroom activities.
 
-Accessibility Support
+#### Accessibility Support
 
 The interface incorporates:
 
@@ -258,56 +310,68 @@ The interface incorporates:
 - Responsive layouts.
 - Browser-based narration with a text-based alternative.
 
-Offline Demo Mode
+#### Offline Demo Mode
 
-Echoes can continue operating when its API is unavailable by using the local curated archive.
+Echoes can continue operating when its API is unavailable by using the local
+curated archive.
 
-The interface visibly identifies this fallback experience as DEMO MODE, distinguishing it from the API-backed experience.
+The interface visibly identifies this fallback experience as **DEMO MODE**,
+distinguishing it from the API-backed experience.
 
-6. Evidence, Data Integrity and Scientific Responsibility
+## 6. Evidence, Data Integrity and Scientific Responsibility
 
 Accuracy is a core design principle of Echoes.
 
 The platform follows these data principles:
 
 1. NSSDCA master-catalog records serve as the archival source of truth.
-2. Original archival wording and plain-language explanations are maintained together.
-3. Claims, story chapters, timeline events, discoveries and quiz explanations retain source IDs.
+2. Original archival wording and plain-language explanations are maintained
+   together.
+3. Claims, story chapters, timeline events, discoveries and quiz explanations
+   retain source IDs.
 4. NSSDCA identifiers and source URLs are validated during startup.
 5. Location precision is never inferred beyond the source record.
 6. Parent-child relationships and guided-route ordering are validated.
 7. Quiz integrity is checked.
-8. Unverified records are excluded from the normal public exploration experience.
-9. Public quiz responses do not expose answer keys; evaluation happens through the API after answer submission.
+8. Unverified records are excluded from the normal public exploration
+   experience.
+9. Public quiz responses do not expose answer keys; evaluation happens through
+   the API after answer submission.
 
-Why Uncertainty Matters
+### Why Uncertainty Matters
 
-Historical documentation does not always establish the present physical condition of equipment on the Moon or Mars.
+Historical documentation does not always establish the present physical
+condition of equipment on the Moon or Mars.
 
 Echoes therefore avoids treating missing information as confirmed information.
 
-Location confidence, documented uncertainty and archive review status are represented explicitly.
+Location confidence, documented uncertainty and archive review status are
+represented explicitly.
 
-This approach allows visitors to explore space heritage while understanding the limits of the available evidence.
+This approach allows visitors to explore space heritage while understanding the
+limits of the available evidence.
 
-7. Technical Architecture
+## 7. Technical Architecture
 
-Echoes is implemented as a TypeScript monorepo with a separation between the frontend, backend, curated archive and shared contracts.
+Echoes is implemented as a TypeScript monorepo with a separation between the
+frontend, backend, curated archive and shared contracts.
 
-Technology Stack
+### Technology Stack
 
-Layer| Technologies
-Frontend| React, TypeScript, Vite
-Backend| Node.js, Express, TypeScript
-Validation| Zod
-Testing| Vitest
-Package management| npm workspaces
-Narration| Browser Web Speech API
-Data storage| Curated local JSON archive
-Progress storage| Browser localStorage
+| Layer | Technologies |
+| --- | --- |
+| Frontend | React, TypeScript, Vite |
+| Backend | Node.js, Express, TypeScript |
+| Validation | Zod |
+| Testing | Vitest |
+| Package management | npm workspaces |
+| Narration | Browser Web Speech API |
+| Data storage | Curated local JSON archive |
+| Progress storage | Browser `localStorage` |
 
-Repository Structure
+### Repository Structure
 
+```text
 backend/
     Express API
     Validation
@@ -335,30 +399,35 @@ shared/
     Zod schemas
     Catalog helpers
     Quiz logic
+```
 
-Frontend and Backend Communication
+### Frontend and Backend Communication
 
-The frontend is responsible for the user experience, feature navigation, loading states, artifact selection, error handling and source navigation.
+The frontend is responsible for the user experience, feature navigation,
+loading states, artifact selection, error handling and source navigation.
 
-The Express backend exposes REST endpoints for archive search, artifact retrieval, guided routes and quiz evaluation.
+The Express backend exposes REST endpoints for archive search, artifact
+retrieval, guided routes and quiz evaluation.
 
-Shared TypeScript contracts and Zod schemas maintain consistent data structures and validation across the application.
+Shared TypeScript contracts and Zod schemas maintain consistent data structures
+and validation across the application.
 
-API Endpoints
+### API Endpoints
 
-All endpoints are prefixed with "/api/v1".
+All endpoints are prefixed with `/api/v1`.
 
-Method| Endpoint| Purpose
-GET| "/health"| Service status and dataset counts
-GET| "/catalog/search?q=&body="| Search verified archive records
-GET| "/artifacts"| Filter and list artifacts
-GET| "/artifacts/:slug"| Retrieve an individual verified artifact
-GET| "/routes"| List curated routes
-GET| "/routes/:slug"| Retrieve an ordered route
-GET| "/quizzes/:artifactSlug"| Retrieve a quiz without answer keys
-POST| "/quizzes/:artifactSlug/answer"| Evaluate a submitted answer
+| Method | Endpoint | Purpose |
+| --- | --- | --- |
+| `GET` | `/health` | Service status and dataset counts |
+| `GET` | `/catalog/search?q=&body=` | Search verified archive records |
+| `GET` | `/artifacts` | Filter and list artifacts |
+| `GET` | `/artifacts/:slug` | Retrieve an individual verified artifact |
+| `GET` | `/routes` | List curated routes |
+| `GET` | `/routes/:slug` | Retrieve an ordered route |
+| `GET` | `/quizzes/:artifactSlug` | Retrieve a quiz without answer keys |
+| `POST` | `/quizzes/:artifactSlug/answer` | Evaluate a submitted answer |
 
-Backend Reliability and Validation
+### Backend Reliability and Validation
 
 The backend includes:
 
@@ -370,53 +439,57 @@ The backend includes:
 - Source-reference validation.
 - Server-side quiz answer evaluation.
 
-The application also supports an offline local-data fallback when the API is unavailable.
+The application also supports an offline local-data fallback when the API is
+unavailable.
 
-8. How to Run the Project
+## 8. How to Run the Project
 
-Requirements
+### Requirements
 
 - Node.js 20 or newer.
 - npm.
 
-Installation
+### Installation
 
 Clone the repository:
 
+```bash
 git clone https://github.com/yukthasmayya8/Echoes-Off-World-Field-Guide.git
-
 cd Echoes-Off-World-Field-Guide
+```
 
 Install dependencies:
 
+```bash
 npm install
+```
 
 Start the application:
 
+```bash
 npm run dev
+```
 
-Open the frontend:
+Open the frontend at <http://localhost:5173>.
 
-http://localhost:5173
+The backend API is available at <http://localhost:4000/api/v1>.
 
-The backend API is available at:
-
-http://localhost:4000/api/v1
-
-Environment Configuration
+### Environment Configuration
 
 To configure a different API host:
 
+```bash
 cp frontend/.env.example frontend/.env
+```
 
-Available settings:
+| Variable | Description |
+| --- | --- |
+| `VITE_API_BASE_URL` | API base URL, including `/api/v1` |
+| `VITE_API_TIMEOUT_MS` | Request timeout in milliseconds; defaults to `8000` |
 
-Variable| Description
-"VITE_API_BASE_URL"| API base URL, including "/api/v1"
-"VITE_API_TIMEOUT_MS"| Request timeout in milliseconds; defaults to 8000
+### Useful Commands
 
-Useful Commands
-
+```bash
 npm run dev
 npm run dev:frontend
 npm run dev:backend
@@ -427,36 +500,51 @@ npm run build
 
 npm start
 node scripts/smoke.mjs
+```
 
-9. Project Scope and Current Limitations
+## 9. Project Scope and Current Limitations
 
 Echoes is a working prototype with an intentionally bounded archive.
 
-The current implementation uses curated JSON records rather than a live, continuously synchronised NASA database.
+The current implementation uses curated JSON records rather than a live,
+continuously synchronised NASA database.
 
-The Planetary Atlas uses the location information available in the archive and should not be interpreted as a live planetary imaging or terrain-mapping service.
+The Planetary Atlas uses the location information available in the archive and
+should not be interpreted as a live planetary imaging or terrain-mapping
+service.
 
-Explore Deeper performs source-grounded retrieval over the curated records; it is not an unrestricted generative AI chatbot.
+Explore Deeper performs source-grounded retrieval over the curated records and
+retains their source context.
 
-Discovery Passport progress is stored locally in the visitor's browser rather than in a central user database.
+Discovery Passport progress is stored locally in the visitor's browser rather
+than in a central user database.
 
-The archive currently contains four verified artifacts and one record awaiting review.
+The archive currently contains four verified artifacts and one record awaiting
+review.
 
-These boundaries are intentional parts of the prototype's current scope. Future development can expand the archive, improve geospatial exploration, add educational activities and strengthen accessibility while preserving the evidence-first approach.
+These boundaries are intentional parts of the prototype's current scope.
+Future development can expand the archive, improve geospatial exploration, add
+educational activities and strengthen accessibility while preserving the
+evidence-first approach.
 
-10. Our Vision
+## 10. Our Vision
 
-A spacecraft may stop operating, but the knowledge produced by its mission continues to influence exploration.
+A spacecraft may stop operating, but the knowledge produced by its mission
+continues to influence exploration.
 
-Echoes aims to preserve that connection between the machines left behind and the scientific progress they helped make possible.
+Echoes aims to preserve that connection between the machines left behind and
+the scientific progress they helped make possible.
 
-By making archival information explorable, understandable and traceable, we hope to encourage younger audiences to see space exploration not merely as a collection of successful missions, but as a continuing story of engineering, scientific investigation and discovery.
+By making archival information explorable, understandable and traceable, we
+hope to encourage younger audiences to see space exploration not merely as a
+collection of successful missions, but as a continuing story of engineering,
+scientific investigation and discovery.
 
 The hardware may remain behind. Its legacy should move forward.
 
-11. Team Nullorbit
+## 11. Team Nullorbit
 
-Developed by Team Nullorbit for the NASA Space Apps Challenge 2026.
+Developed by **Team Nullorbit** for the **NASA Space Apps Challenge 2026**.
 
 - Ankitha Shanubhogh
 - Navya Poojary
@@ -465,10 +553,13 @@ Developed by Team Nullorbit for the NASA Space Apps Challenge 2026.
 - Shravya
 - Yuktha S Mayya
 
-12. License and Attribution
+## 12. License and Attribution
 
-NASA data and mission information remain subject to their original source terms.
+NASA data and mission information remain subject to their original source
+terms.
 
-Refer to the in-app NASA Resources module and linked archival records for provenance, source attribution and relevant limitations.
+Refer to the in-app NASA Resources module and linked archival records for
+provenance, source attribution and relevant limitations.
 
-This project is an independent educational prototype developed for the NASA Space Apps Challenge. It is not an official NASA product or service.
+This project is an independent educational prototype developed for the NASA
+Space Apps Challenge. It is not an official NASA product or service.
