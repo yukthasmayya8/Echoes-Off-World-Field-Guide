@@ -2,17 +2,12 @@
 
 > "The rover stopped. The discoveries kept moving."
 
-**Live Project:** [Explore Echoes](https://echoes-off-world-field-guide.netlify.app/)
-
-**Live Demo:** [Launch Live Demo](https://echoes-off-world-field-guide.netlify.app/)
+**Live Project:** [Explore Echoes- Live Application](https://echoes-off-world-field-guide.netlify.app/)
 
 An evidence-first, interactive field guide preserving the stories, engineering
 and scientific legacy of NASA hardware remaining on the Moon and Mars.
 
 Developed by **Team Nullorbit** for the **NASA Space Apps Challenge 2026**.
-
-[GitHub Repository](https://github.com/yukthasmayya8/Echoes-Off-World-Field-Guide) |
-[Live Application](https://echoes-off-world-field-guide.netlify.app/)
 
 ---
 
