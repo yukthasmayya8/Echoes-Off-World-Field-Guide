@@ -1,0 +1,54 @@
+[
+  {
+    "id": "route-moon-left-behind",
+    "slug": "moon-what-we-left-behind",
+    "title": "The Moon: What We Left Behind",
+    "description": "Two lunar machines, two very different afterlives. Start with the descent stage at Tranquility Base, then meet the robotic lander that Apollo 12 came back to inspect.",
+    "body": "moon",
+    "estimatedMinutes": 12,
+    "steps": [
+      {
+        "id": "moon-left-behind-step-1",
+        "order": 1,
+        "artifactSlug": "apollo-11-eagle",
+        "title": "Tranquility Base",
+        "narrative": "The Apollo 11 descent stage is still where the first crew left it. Its upper stage was cast off in orbit and is assumed to have crashed, but the archive does not know exactly where.",
+        "focus": "The descent stage, the EASEP, and the unknown fate of the ascent stage."
+      },
+      {
+        "id": "moon-left-behind-step-2",
+        "order": 2,
+        "artifactSlug": "surveyor-3",
+        "title": "A robot with visitors",
+        "narrative": "Surveyor 3 proved that a spacecraft could land softly on the Moon. Two and a half years later, Apollo 12 astronauts walked over to it and took pieces home.",
+        "focus": "The three-touchdown landing, the surface sampler, and the Apollo 12 visit."
+      }
+    ]
+  },
+  {
+    "id": "route-mars-pair",
+    "slug": "mars-lander-and-rover",
+    "title": "Mars: A Lander and Its Rover",
+    "description": "Follow the pair that arrived together in Ares Vallis: a lander built to bounce, and a small rover built to roll.",
+    "body": "mars",
+    "estimatedMinutes": 10,
+    "steps": [
+      {
+        "id": "mars-pair-step-1",
+        "order": 1,
+        "artifactSlug": "mars-pathfinder-lander",
+        "title": "The bounce and the station",
+        "narrative": "Mars Pathfinder entered the atmosphere directly, bounced across the surface inside airbags, and opened its solar petals. It then became Sojourner's camera platform and radio relay.",
+        "focus": "Direct entry, the airbag landing, and the Sagan Memorial Station."
+      },
+      {
+        "id": "mars-pair-step-2",
+        "order": 2,
+        "artifactSlug": "sojourner",
+        "title": "The rover rolls",
+        "narrative": "Sojourner unfolded, rolled down a ramp, and began studying rocks and soil with a spectrometer and cameras while operators on Earth drove it through a 10 to 15 minute signal delay.",
+        "focus": "The deployment ramp, the APXS, and the end of communications."
+      }
+    ]
+  }
+]

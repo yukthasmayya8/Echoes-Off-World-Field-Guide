@@ -1,0 +1,907 @@
+[
+  {
+    "id": "apollo-11-lunar-module-eagle",
+    "slug": "apollo-11-eagle",
+    "name": "Apollo 11 Lunar Module Eagle",
+    "aliases": ["Eagle", "LM-5", "Apollo 11 LM/EASEP", "1969-059C"],
+    "body": "moon",
+    "missionName": "Apollo 11",
+    "artifactType": "lunar-module",
+    "parentMission": "Apollo Program",
+    "parentArtifactId": null,
+    "childArtifactIds": [],
+    "relationshipDescription": null,
+    "verificationStatus": "verified",
+    "nssdca": {
+      "recordTitle": "Apollo 11 Lunar Module / EASEP",
+      "recordId": "1969-059C",
+      "recordUrl": "https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=1969-059C",
+      "checkedOn": "2026-11-14",
+      "originalSourceFields": [
+        { "field": "Launch Date", "value": "1969-07-16" },
+        { "field": "Launch Vehicle", "value": "Saturn 5" },
+        { "field": "Launch Site", "value": "Cape Canaveral, United States" },
+        { "field": "Mass", "value": "15103 kg" },
+        { "field": "Disciplines", "value": "Planetary Science; Human Crew" }
+      ]
+    },
+    "mission": {
+      "objective": "Land the first astronauts on the Moon, deploy the Early Apollo Scientific Experiment Package (EASEP), and return the crew to the command module.",
+      "launchDate": "1969-07-16",
+      "arrivalDate": "1969-07-20",
+      "originalOperationalStatus": "The LM lifted off from the Moon at 17:54:01 UT on 21 July after 21 hours, 36 minutes on the lunar surface.",
+      "simplifiedOperationalStatus": "Eagle stayed on the lunar surface for 21 hours and 36 minutes, then lifted off to rejoin the command module.",
+      "finalDisposition": "The descent stage remained on the Moon at Tranquility Base. The ascent stage was jettisoned into lunar orbit on 22 July 1969; the NSSDCA record states that its fate is not known and that it is assumed to have crashed into the lunar surface within the following 1 to 4 months."
+    },
+    "location": {
+      "label": "Tranquility Base, Mare Tranquillitatis, Moon",
+      "confidence": "exact",
+      "explanation": "NSSDCA gives the landing coordinates as 0.67416 N, 23.47314 E, determined from Lunar Reconnaissance Orbiter images in the DE 421 mean Earth/polar rotation axis reference frame. This is the documented landing site of the descent stage.",
+      "coordinates": {
+        "latitude": 0.67416,
+        "longitude": 23.47314,
+        "referenceFrame": "DE 421 mean Earth/polar rotation axis reference frame",
+        "sourceId": "nssdca-1969-059c"
+      }
+    },
+    "summary": "The first crewed vehicle to land on the Moon. Its descent stage was left at Tranquility Base, while the ascent stage was jettisoned into lunar orbit.",
+    "story": {
+      "chapters": [
+        {
+          "id": "eagle-chapter-1",
+          "number": 1,
+          "title": "The Eagle",
+          "originalWording": "The Apollo 11 Lunar Module (LM) \"Eagle\" was the first crewed vehicle to land on the Moon.",
+          "simplifiedWording": "Eagle was the lunar lander that carried the first people to the surface of the Moon.",
+          "sourceIds": ["nssdca-1969-059c"]
+        },
+        {
+          "id": "eagle-chapter-2",
+          "number": 2,
+          "title": "Tranquility Base",
+          "originalWording": "The LM landed at 20:17:40 UT (4:17:40 p.m. EDT) on 20 July 1969 in the region known as Mare Tranquilitatis (the Sea of Tranquility) at 0.67416 degrees N latitude, 23.47314 degrees E longitude (as determined from Lunar Reconnaissance Orbiter images, DE 421 mean Earth/polar rotation axis reference frame), Armstrong reporting, \"Houston, Tranquility Base here - the Eagle has landed\".",
+          "simplifiedWording": "Eagle touched down in the Sea of Tranquility on 20 July 1969. Its position has since been measured precisely from lunar orbit.",
+          "sourceIds": ["nssdca-1969-059c"]
+        },
+        {
+          "id": "eagle-chapter-3",
+          "number": 3,
+          "title": "One Small Step",
+          "originalWording": "Armstrong stepped onto the lunar surface at 02:56:15 UT on 21 July (10:56:15 p.m. July 20 EDT), stating, \"That's one small step for man, one giant leap for mankind\".",
+          "simplifiedWording": "Early on 21 July UTC, Neil Armstrong became the first person to walk on the Moon. Buzz Aldrin followed 19 minutes later.",
+          "sourceIds": ["nssdca-1969-059c"]
+        },
+        {
+          "id": "eagle-chapter-4",
+          "number": 4,
+          "title": "Instruments Left Behind",
+          "originalWording": "The astronauts deployed the EASEP and other instruments, took photographs, and collected 21.55 kg of lunar rock and soil.",
+          "simplifiedWording": "The crew set up a small science station, took photographs, and gathered 21.55 kilograms of lunar samples.",
+          "sourceIds": ["nssdca-1969-059c"]
+        },
+        {
+          "id": "eagle-chapter-5",
+          "number": 5,
+          "title": "The Descent Stage Stays",
+          "originalWording": "The descent stage served as a platform for launching the ascent stage and was left behind on the Moon. The fate of the LM is not known, but it is assumed that it crashed into the lunar surface sometime within the following 1 to 4 months.",
+          "simplifiedWording": "The lower half of Eagle stayed at Tranquility Base. The upper half was cast off in lunar orbit, and the archive says its exact fate is unknown.",
+          "sourceIds": ["nssdca-1969-059c"]
+        }
+      ]
+    },
+    "timeline": [
+      {
+        "id": "eagle-launch",
+        "title": "Launch from Cape Canaveral",
+        "date": "1969-07-16",
+        "description": "Apollo 11 launched on a Saturn 5 rocket from Cape Canaveral, United States.",
+        "eventType": "launch",
+        "sourceIds": ["nssdca-1969-059c"]
+      },
+      {
+        "id": "eagle-landing",
+        "title": "Landing at Tranquility Base",
+        "date": "1969-07-20",
+        "description": "Eagle landed in Mare Tranquillitatis at 20:17:40 UT.",
+        "eventType": "landing",
+        "sourceIds": ["nssdca-1969-059c"]
+      },
+      {
+        "id": "eagle-first-step",
+        "title": "First human step on the Moon",
+        "date": "1969-07-21",
+        "description": "Armstrong stepped onto the lunar surface at 02:56:15 UT; Aldrin followed 19 minutes later.",
+        "eventType": "surface-operations",
+        "sourceIds": ["nssdca-1969-059c"]
+      },
+      {
+        "id": "eagle-liftoff",
+        "title": "Ascent stage lifts off",
+        "date": "1969-07-21",
+        "description": "The ascent stage lifted off at 17:54:01 UT after 21 hours and 36 minutes on the lunar surface.",
+        "eventType": "departure",
+        "sourceIds": ["nssdca-1969-059c"]
+      },
+      {
+        "id": "eagle-jettison",
+        "title": "Ascent stage jettisoned",
+        "date": "1969-07-22",
+        "description": "After docking with the command and service module, the LM was jettisoned into lunar orbit at 00:01:01 UT. Its later fate is not known.",
+        "eventType": "afterlife",
+        "sourceIds": ["nssdca-1969-059c"]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "eagle-easep-seismometer",
+        "hardware": "EASEP passive seismometer",
+        "observation": "The EASEP was deployed approximately 17 m south of the LM and turned on by ground command at 04:40:39 UT on 21 July 1969.",
+        "scientificResult": "The NSSDCA record reports that the EASEP functioned normally despite operating temperatures that exceeded the planned maximum by 30 C.",
+        "simpleExplanation": "A small seismometer listened for movement in the lunar ground and sent its readings back to Earth.",
+        "detailedExplanation": "The Early Apollo Scientific Experiment Package combined a passive seismometer with a lunar dust detector. It was designed to measure seismic activity and physical properties of the lunar crust and interior, and it operated from 21 July until it was terminated on 27 August 1969.",
+        "sourceIds": ["nssdca-1969-059c"]
+      },
+      {
+        "id": "eagle-lunar-samples",
+        "hardware": "Sample collection apparatus and core tubes",
+        "observation": "The astronauts collected 21.55 kg of lunar rock and soil and took two core tube samples.",
+        "scientificResult": "The samples were packed with the solar wind experiment and returned to Earth for laboratory study.",
+        "simpleExplanation": "The crew brought pieces of the Moon home so scientists could study them directly.",
+        "detailedExplanation": "The Apollo 11 crew collected rock and soil during a surface traverse of about 250 meters, including two core tube samples. The sample boxes were transferred to the ascent stage before the crew left the surface.",
+        "sourceIds": ["nssdca-1969-059c"]
+      }
+    ],
+    "sources": [
+      {
+        "id": "nssdca-1969-059c",
+        "title": "Apollo 11 Lunar Module / EASEP — NSSDCA Master Catalog",
+        "organization": "NASA Space Science Data Coordinated Archive (NSSDCA)",
+        "url": "https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=1969-059C",
+        "supportedClaims": [
+          "Eagle was the first crewed vehicle to land on the Moon.",
+          "The landing coordinates at Tranquility Base.",
+          "Deployment and operation of the EASEP.",
+          "The ascent stage fate is not known."
+        ],
+        "originalWording": "The Apollo 11 Lunar Module (LM) \"Eagle\" was the first crewed vehicle to land on the Moon. … The fate of the LM is not known, but it is assumed that it crashed into the lunar surface sometime within the following 1 to 4 months.",
+        "simplifiedExplanation": "The NSSDCA spacecraft record is the archive source for Eagle's landing, surface operations, experiments and the uncertain fate of the ascent stage.",
+        "accessedOn": "2026-11-14"
+      }
+    ],
+    "image": {
+      "url": "https://nssdc.gsfc.nasa.gov/planetary/image/ap11_lm_as11_40_5927.jpg",
+      "alt": "Apollo 11 Lunar Module Eagle on the lunar surface",
+      "credit": "NASA/NSSDCA (image linked from the NSSDCA Apollo 11 record)"
+    }
+  },
+  {
+    "id": "surveyor-3",
+    "slug": "surveyor-3",
+    "name": "Surveyor 3",
+    "aliases": ["Surveyor3", "Surveyor-C", "02756"],
+    "body": "moon",
+    "missionName": "Surveyor 3",
+    "artifactType": "robotic-lander",
+    "parentMission": "Surveyor Program",
+    "parentArtifactId": null,
+    "childArtifactIds": [],
+    "relationshipDescription": null,
+    "verificationStatus": "verified",
+    "nssdca": {
+      "recordTitle": "Surveyor 3",
+      "recordId": "1967-035A",
+      "recordUrl": "https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=1967-035A",
+      "checkedOn": "2026-11-14",
+      "originalSourceFields": [
+        { "field": "Launch Date", "value": "1967-04-17" },
+        { "field": "Launch Vehicle", "value": "Atlas-Centaur" },
+        { "field": "Launch Site", "value": "Cape Canaveral, United States" },
+        { "field": "Mass", "value": "296 kg" },
+        { "field": "Discipline", "value": "Planetary Science" }
+      ]
+    },
+    "mission": {
+      "objective": "Demonstrate a soft landing in the Apollo zone, return television pictures, measure surface properties, and manipulate lunar material with a surface sampler.",
+      "launchDate": "1967-04-17",
+      "arrivalDate": "1967-04-20",
+      "originalOperationalStatus": "The last data were returned on 04 May 1967 at 00:04 UT and Surveyor 3 failed to come back to life following the two week lunar night.",
+      "simplifiedOperationalStatus": "Surveyor 3 worked through its first lunar day and then went silent after the two-week lunar night.",
+      "finalDisposition": "Surveyor 3 remains at its landing site in southeast Oceanus Procellarum. Apollo 12 astronauts removed about 10 kg of parts, including the television camera, in November 1969."
+    },
+    "location": {
+      "label": "Southeast Oceanus Procellarum, Moon",
+      "confidence": "exact",
+      "explanation": "NSSDCA gives the final touchdown coordinates as 3.0162 S, 336.582 E, determined from Lunar Reconnaissance Orbiter images. The spacecraft came to rest on a 14 degree slope inside a subdued 200 meter crater.",
+      "coordinates": {
+        "latitude": -3.0162,
+        "longitude": 336.582,
+        "referenceFrame": "Coordinates as reported by NSSDCA (determined from Lunar Reconnaissance Orbiter images)",
+        "sourceId": "nssdca-1967-035a"
+      }
+    },
+    "summary": "A robotic lunar lander that tested soft-landing technology for Apollo. It was later visited and sampled by the Apollo 12 crew, making it the first spacecraft on another world to be inspected by people.",
+    "story": {
+      "chapters": [
+        {
+          "id": "surveyor-3-chapter-1",
+          "number": 1,
+          "title": "A Robotic Pathfinder",
+          "originalWording": "The primary objectives of the Surveyor program, a series of seven robotic lunar softlanding flights, were to support the coming crewed Apollo landings by: (1) developing and validating the technology for landing softly on the Moon; (2) providing data on the compatibility of the Apollo design with conditions encountered on the lunar surface; and (3) adding to the scientific knowledge of the Moon.",
+          "simplifiedWording": "Surveyor 3 was one of seven robotic landers built to prove that a spacecraft could land gently on the Moon before astronauts tried it.",
+          "sourceIds": ["nssdca-1967-035a"]
+        },
+        {
+          "id": "surveyor-3-chapter-2",
+          "number": 2,
+          "title": "Three Touchdowns",
+          "originalWording": "Touchdown on the lunar surface occurred three times because the vernier engines continued to fire during the first two touchdowns causing the spacecraft to lift off the surface.",
+          "simplifiedWording": "Its engines did not cut off cleanly, so Surveyor 3 touched down, lifted off, and touched down again before coming to rest.",
+          "sourceIds": ["nssdca-1967-035a"]
+        },
+        {
+          "id": "surveyor-3-chapter-3",
+          "number": 3,
+          "title": "Digging into the Regolith",
+          "originalWording": "The lunar sampler was operated for a total of 18 hours, 22 minutes, digging trenches as deep as 18 cm, and the television camera returned 6326 pictures.",
+          "simplifiedWording": "A small scoop dug trenches in the lunar soil while the camera sent home more than six thousand pictures.",
+          "sourceIds": ["nssdca-1967-035a"]
+        },
+        {
+          "id": "surveyor-3-chapter-4",
+          "number": 4,
+          "title": "Silence After the Lunar Night",
+          "originalWording": "The last data were returned on 04 May 1967 at 00:04 UT and Surveyor 3 failed to come back to life following the two week lunar night.",
+          "simplifiedWording": "The lander stopped transmitting after its first lunar day and did not wake up after the long, cold lunar night.",
+          "sourceIds": ["nssdca-1967-035a"]
+        },
+        {
+          "id": "surveyor-3-chapter-5",
+          "number": 5,
+          "title": "A Visitor from Apollo 12",
+          "originalWording": "On 19 November 1969 the Apollo 12 Lunar Module (LM) landed within about 180 m of the Surveyor 3 spacecraft. Astronauts Pete Conrad and Alan Bean visited the spacecraft on their second moonwalk on 20 November, examining Surveyor 3 and its surroundings, taking photographs, and removing about 10 kg of parts from the spacecraft, including the TV camera, for later examination back on Earth.",
+          "simplifiedWording": "Two and a half years later, Apollo 12 landed nearby. Its crew walked over to Surveyor 3 and brought pieces of it home.",
+          "sourceIds": ["nssdca-1967-035a"]
+        }
+      ]
+    },
+    "timeline": [
+      {
+        "id": "surveyor-3-launch",
+        "title": "Launch from Cape Canaveral",
+        "date": "1967-04-17",
+        "description": "Surveyor 3 launched on an Atlas-Centaur from Cape Canaveral, United States.",
+        "eventType": "launch",
+        "sourceIds": ["nssdca-1967-035a"]
+      },
+      {
+        "id": "surveyor-3-landing",
+        "title": "Final touchdown",
+        "date": "1967-04-20",
+        "description": "After three touchdowns caused by continuing vernier-engine firing, Surveyor 3 came to rest at 00:04:53 UT.",
+        "eventType": "landing",
+        "sourceIds": ["nssdca-1967-035a"]
+      },
+      {
+        "id": "surveyor-3-sampling",
+        "title": "Surface sampler begins work",
+        "date": "1967-04-22",
+        "description": "The surface sampler was used two days after landing to dig trenches and manipulate lunar material.",
+        "eventType": "science",
+        "sourceIds": ["nssdca-1967-035a"]
+      },
+      {
+        "id": "surveyor-3-last-data",
+        "title": "Last data returned",
+        "date": "1967-05-04",
+        "description": "The last data were returned at 00:04 UT. The lander did not revive after the two-week lunar night.",
+        "eventType": "end-of-mission",
+        "sourceIds": ["nssdca-1967-035a"]
+      },
+      {
+        "id": "surveyor-3-apollo-12-visit",
+        "title": "Apollo 12 crew visits",
+        "date": "1969-11-20",
+        "description": "Pete Conrad and Alan Bean examined Surveyor 3 during their second moonwalk and removed about 10 kg of parts.",
+        "eventType": "afterlife",
+        "sourceIds": ["nssdca-1967-035a"]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "surveyor-3-soil-mechanics",
+        "hardware": "Surface sampler on a 1.5 meter pantograph arm",
+        "observation": "The sampler dug trenches as deep as 18 cm and manipulated the lunar surface while the camera recorded the effects.",
+        "scientificResult": "A large volume of new data on the strength, texture, and structure of lunar material was transmitted by the spacecraft.",
+        "simpleExplanation": "By pushing and digging into the soil, Surveyor 3 showed engineers how firm and how sticky lunar dirt really is.",
+        "detailedExplanation": "The surface sampler was a 12 cm by 5 cm scoop on a 1.5 meter pantograph arm. It operated for 18 hours and 22 minutes, and the resulting images and engineering data informed the design of equipment for the Apollo landings.",
+        "sourceIds": ["nssdca-1967-035a"]
+      },
+      {
+        "id": "surveyor-3-camera",
+        "hardware": "Survey television camera with an extended glare hood",
+        "observation": "The television camera returned 6326 pictures, including images of an eclipse of the Sun by the Earth.",
+        "scientificResult": "Related thermal measurements were recorded during the eclipse, and the images documented the landing site and surface operations.",
+        "simpleExplanation": "The camera mapped the landing site and even watched Earth pass in front of the Sun.",
+        "detailedExplanation": "Surveyor 3 carried a survey television camera with an extended glare hood plus auxiliary mirrors for views beneath the engines and near a footpad. Some images showed glare that was attributed to dust or erosion effects on the mirror after the rough touchdown.",
+        "sourceIds": ["nssdca-1967-035a"]
+      }
+    ],
+    "sources": [
+      {
+        "id": "nssdca-1967-035a",
+        "title": "Surveyor 3 — NSSDCA Master Catalog",
+        "organization": "NASA Space Science Data Coordinated Archive (NSSDCA)",
+        "url": "https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=1967-035A",
+        "supportedClaims": [
+          "Surveyor 3 achieved a lunar soft landing in April 1967.",
+          "The spacecraft touched down three times before coming to rest.",
+          "The surface sampler and camera results.",
+          "The Apollo 12 crew visited Surveyor 3 in November 1969."
+        ],
+        "originalWording": "Surveyor 3 was the second spacecraft of the Surveyor series to achieve a lunar soft landing. … On 19 November 1969 the Apollo 12 Lunar Module (LM) landed within about 180 m of the Surveyor 3 spacecraft.",
+        "simplifiedExplanation": "The NSSDCA record documents the landing, the surface-sampler campaign, the end of communications, and the later Apollo 12 visit.",
+        "accessedOn": "2026-11-14"
+      }
+    ],
+    "image": {
+      "url": "https://nssdc.gsfc.nasa.gov/image/spacecraft/surveyor_beach.jpg",
+      "alt": "Surveyor 3 spacecraft",
+      "credit": "NASA/NSSDCA (image linked from the NSSDCA Surveyor 3 record)"
+    }
+  },
+  {
+    "id": "mars-pathfinder-lander",
+    "slug": "mars-pathfinder-lander",
+    "name": "Mars Pathfinder Lander (Sagan Memorial Station)",
+    "aliases": ["Mars Pathfinder", "MESUR Pathfinder", "Carl Sagan Memorial Station", "Pathfinder", "1996-068A"],
+    "body": "mars",
+    "missionName": "Mars Pathfinder",
+    "artifactType": "lander",
+    "parentMission": "NASA Discovery Program",
+    "parentArtifactId": null,
+    "childArtifactIds": ["mars-pathfinder-rover"],
+    "relationshipDescription": "The Sojourner rover was stowed on this lander and rolled down a deployment ramp onto the Martian surface on 6 July 1997.",
+    "verificationStatus": "verified",
+    "nssdca": {
+      "recordTitle": "Mars Pathfinder",
+      "recordId": "1996-068A",
+      "recordUrl": "https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=1996-068A",
+      "checkedOn": "2026-11-14",
+      "originalSourceFields": [
+        { "field": "Launch Date", "value": "1996-12-04" },
+        { "field": "Launch Vehicle", "value": "Delta II 7925" },
+        { "field": "Launch Site", "value": "Cape Canaveral, United States" },
+        { "field": "Mass", "value": "463 kg" },
+        { "field": "Nominal Power", "value": "35 W" }
+      ]
+    },
+    "mission": {
+      "objective": "Demonstrate low-cost landing and surface exploration of Mars, and characterize the Martian environment with imaging, rock and soil experiments, atmospheric entry science, and meteorology.",
+      "launchDate": "1996-12-04",
+      "arrivalDate": "1997-07-04",
+      "originalOperationalStatus": "Images were taken and experiments performed by the lander and rover until 27 September 1997 when communications were lost for unknown reasons.",
+      "simplifiedOperationalStatus": "The lander and rover operated until 27 September 1997, when contact was lost for reasons the archive describes as unknown.",
+      "finalDisposition": "The lander remains in the Ares Vallis region of Mars. The NSSDCA record does not report a later recovery or relocation."
+    },
+    "location": {
+      "label": "Ares Vallis, Mars (Sagan Memorial Station)",
+      "confidence": "approximate",
+      "explanation": "NSSDCA gives the landing site as 19.33 N, 33.55 W and names the lander the Sagan Memorial Station. The archive coordinates are reported to two decimal places and describe the landing site, not a surveyed final position.",
+      "coordinates": {
+        "latitude": 19.33,
+        "longitude": -33.55,
+        "referenceFrame": "Coordinates as reported by NSSDCA (no frame stated)",
+        "sourceId": "nssdca-1996-068a"
+      }
+    },
+    "summary": "The stationary lander half of Mars Pathfinder. It bounced to a stop in Ares Vallis, deployed the Sojourner rover, and relayed the rover's data to Earth until contact was lost in September 1997.",
+    "story": {
+      "chapters": [
+        {
+          "id": "pathfinder-lander-chapter-1",
+          "number": 1,
+          "title": "A Low-Cost Discovery Mission",
+          "originalWording": "Mars Pathfinder was the second of NASA's low-cost planetary Discovery missions to be launched. The mission consists of a stationary lander and a surface rover.",
+          "simplifiedWording": "Mars Pathfinder was built as a small, low-cost mission with two parts: a lander that stayed put and a rover that moved.",
+          "sourceIds": ["nssdca-1996-068a"]
+        },
+        {
+          "id": "pathfinder-lander-chapter-2",
+          "number": 2,
+          "title": "Direct Entry",
+          "originalWording": "The spacecraft entered the Martian atmosphere on 4 July 1997 directly from its approach hyperbola at about 7300 m/s without going into orbit around the planet.",
+          "simplifiedWording": "Instead of first parking in orbit, Pathfinder hit the Martian atmosphere directly at about 7.3 kilometers per second.",
+          "sourceIds": ["nssdca-1996-068a"]
+        },
+        {
+          "id": "pathfinder-lander-chapter-3",
+          "number": 3,
+          "title": "Bouncing to a Stop",
+          "originalWording": "The lander dropped to the ground in 3.8 seconds and impacted at 16:56:55 UT (12:56:55 p.m. EDT) on 4 July 1997 at a velocity of 18 m/s - approximately 14 m/s vertical and 12 m/s horizontal - and bounced about 12 meters (40 feet) into the air, bouncing at least another 15 times and rolling before coming to rest approximately 2.5 minutes after impact.",
+          "simplifiedWording": "Cushioned by airbags, the lander hit the surface, bounced high, bounced more than a dozen more times, and finally rolled to a stop.",
+          "sourceIds": ["nssdca-1996-068a"]
+        },
+        {
+          "id": "pathfinder-lander-chapter-4",
+          "number": 4,
+          "title": "A Station for a Rover",
+          "originalWording": "The bulk of the lander's task was to support the rover by imaging rover operations and relaying data from the rover to Earth. The lander was also equipped with a meteorology station.",
+          "simplifiedWording": "The lander served as Sojourner's camera platform, radio relay, and weather station.",
+          "sourceIds": ["nssdca-1996-068a"]
+        },
+        {
+          "id": "pathfinder-lander-chapter-5",
+          "number": 5,
+          "title": "Sagan Memorial Station",
+          "originalWording": "The landing site in the Ares Vallis region of Mars is at 19.33 N, 33.55 W. The lander has been named the Sagan Memorial Station.",
+          "simplifiedWording": "Pathfinder landed in Ares Vallis at 19.33 N, 33.55 W, and the site is named after Carl Sagan.",
+          "sourceIds": ["nssdca-1996-068a"]
+        }
+      ]
+    },
+    "timeline": [
+      {
+        "id": "pathfinder-lander-launch",
+        "title": "Launch from Cape Canaveral",
+        "date": "1996-12-04",
+        "description": "Mars Pathfinder launched on a Delta II 7925 from Cape Canaveral, United States.",
+        "eventType": "launch",
+        "sourceIds": ["nssdca-1996-068a"]
+      },
+      {
+        "id": "pathfinder-lander-landing",
+        "title": "Airbag landing in Ares Vallis",
+        "date": "1997-07-04",
+        "description": "The lander entered directly and impacted at 16:56:55 UT, bouncing to rest about 1 km from the initial impact site.",
+        "eventType": "landing",
+        "sourceIds": ["nssdca-1996-068a"]
+      },
+      {
+        "id": "pathfinder-lander-petals",
+        "title": "Solar petals opened",
+        "date": "1997-07-04",
+        "description": "Pathfinder opened its three triangular solar panels 87 minutes after landing and began returning engineering and atmospheric data.",
+        "eventType": "deployment",
+        "sourceIds": ["nssdca-1996-068a"]
+      },
+      {
+        "id": "pathfinder-lander-rover-deployment",
+        "title": "Sojourner rolls onto Mars",
+        "date": "1997-07-06",
+        "description": "After ramps were deployed, the rover rolled onto the surface at about 05:40 UT.",
+        "eventType": "deployment",
+        "sourceIds": ["nssdca-1996-068a", "nssdca-mesurpr"]
+      },
+      {
+        "id": "pathfinder-lander-loss-of-contact",
+        "title": "Communications lost",
+        "date": "1997-09-27",
+        "description": "Images and experiments continued until 27 September 1997, when communications were lost for unknown reasons.",
+        "eventType": "end-of-mission",
+        "sourceIds": ["nssdca-1996-068a"]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "pathfinder-lander-meteorology",
+        "hardware": "Meteorology station",
+        "observation": "The lander carried a meteorology station and took atmospheric measurements during descent.",
+        "scientificResult": "The mission's stated scientific objectives included meteorology and characterizing the Martian environment for further exploration.",
+        "simpleExplanation": "The lander measured the Martian atmosphere and weather from the surface.",
+        "detailedExplanation": "NSSDCA lists atmospheric entry science and meteorology among the mission's scientific objectives. The lander took atmospheric measurements as it descended and then operated a meteorology station at the surface.",
+        "sourceIds": ["nssdca-1996-068a"]
+      },
+      {
+        "id": "pathfinder-lander-imaging",
+        "hardware": "Lander imaging system on a pop-up mast",
+        "observation": "The imaging system obtained views of the rover and immediate surroundings and a panoramic view of the landing area.",
+        "scientificResult": "The images supported rover operations and documented the geology and terrain of the Ares Vallis landing site.",
+        "simpleExplanation": "A camera on a mast photographed the rover, the landing site, and the surrounding landscape.",
+        "detailedExplanation": "The lander's camera was mounted on a 0.8 meter pop-up mast. It imaged rover operations for Earth-based drivers and returned a panoramic view of the landing area, while also supporting long-range and close-up surface imaging objectives.",
+        "sourceIds": ["nssdca-1996-068a"]
+      }
+    ],
+    "sources": [
+      {
+        "id": "nssdca-1996-068a",
+        "title": "Mars Pathfinder — NSSDCA Master Catalog",
+        "organization": "NASA Space Science Data Coordinated Archive (NSSDCA)",
+        "url": "https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=1996-068A",
+        "supportedClaims": [
+          "Mars Pathfinder was a low-cost Discovery mission with a lander and rover.",
+          "The direct-entry and airbag landing sequence on 4 July 1997.",
+          "The lander's role in supporting the rover and its meteorology station.",
+          "The Ares Vallis landing site and the Sagan Memorial Station name.",
+          "Communications were lost on 27 September 1997."
+        ],
+        "originalWording": "Mars Pathfinder was the second of NASA's low-cost planetary Discovery missions to be launched. The mission consists of a stationary lander and a surface rover. … Images were taken and experiments performed by the lander and rover until 27 September 1997 when communications were lost for unknown reasons.",
+        "simplifiedExplanation": "The NSSDCA record is the archive source for the lander's mission design, entry and landing, its support of Sojourner, and the end of communications.",
+        "accessedOn": "2026-11-14"
+      },
+      {
+        "id": "nssdca-mesurpr",
+        "title": "Mars Pathfinder Rover — NSSDCA Master Catalog",
+        "organization": "NASA Space Science Data Coordinated Archive (NSSDCA)",
+        "url": "https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=MESURPR",
+        "supportedClaims": [
+          "Sojourner was stowed on the lander.",
+          "The rover rolled down a deployment ramp on 6 July 1997."
+        ],
+        "originalWording": "The rover was stowed on the lander at a height of 180 mm. At deployment, the rover extended to its full height and rolled down a deployment ramp at about 05:40 UT on 6 July 1997 (1:40 a.m. EDT).",
+        "simplifiedExplanation": "The rover record confirms that Sojourner travelled to Mars on the lander and drove down a ramp onto the surface.",
+        "accessedOn": "2026-11-14"
+      }
+    ],
+    "image": {
+      "url": "https://nssdc.gsfc.nasa.gov/planetary/image/marspath_lander.jpg",
+      "alt": "Mars Pathfinder lander on the Martian surface, photographed by Sojourner",
+      "credit": "NASA/NSSDCA (image linked from the NSSDCA Mars Pathfinder record)"
+    }
+  },
+  {
+    "id": "mars-pathfinder-rover",
+    "slug": "sojourner",
+    "name": "Sojourner",
+    "aliases": ["Mars Pathfinder Rover", "Microrover Flight Experiment", "MFEX", "Rocky IV", "MESUR Pathfinder Rover", "MESURPR"],
+    "body": "mars",
+    "missionName": "Mars Pathfinder",
+    "artifactType": "rover",
+    "parentMission": "NASA Discovery Program",
+    "parentArtifactId": "mars-pathfinder-lander",
+    "childArtifactIds": [],
+    "relationshipDescription": "Sojourner was stowed on the Mars Pathfinder lander and rolled down a deployment ramp onto the surface on 6 July 1997.",
+    "verificationStatus": "verified",
+    "nssdca": {
+      "recordTitle": "Mars Pathfinder Rover",
+      "recordId": "MESURPR",
+      "recordUrl": "https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=MESURPR",
+      "checkedOn": "2026-11-14",
+      "originalSourceFields": [
+        { "field": "Launch Date", "value": "1996-12-04" },
+        { "field": "Launch Vehicle", "value": "Delta II" },
+        { "field": "Launch Site", "value": "Cape Canaveral, United States" },
+        { "field": "Mass", "value": "10.5 kg" },
+        { "field": "Nominal Power", "value": "13 W" }
+      ]
+    },
+    "mission": {
+      "objective": "Test a small rover on Mars by demonstrating mobility, imaging, soil and rock studies, and communications through a lander.",
+      "launchDate": "1996-12-04",
+      "arrivalDate": "1997-07-04",
+      "originalOperationalStatus": "Images were taken and experiments performed by the lander and rover until 27 September 1997 when communications were lost for unknown reasons.",
+      "simplifiedOperationalStatus": "Sojourner operated on Mars until 27 September 1997, when the mission lost contact with the lander and rover.",
+      "finalDisposition": "The rover remains in the Ares Vallis region of Mars. The NSSDCA record does not give a surveyed final position for the rover."
+    },
+    "location": {
+      "label": "Ares Vallis, Mars (Mars Pathfinder landing site)",
+      "confidence": "approximate",
+      "explanation": "NSSDCA gives the Mars Pathfinder landing site as 19.33 N, 33.55 W but does not provide a surveyed final position for the rover. The coordinates shown are the landing-site coordinates from the archive.",
+      "coordinates": {
+        "latitude": 19.33,
+        "longitude": -33.55,
+        "referenceFrame": "Coordinates as reported by NSSDCA (no frame stated)",
+        "sourceId": "nssdca-1996-068a"
+      }
+    },
+    "summary": "A 10.5 kg, six-wheeled rover carried to Mars by the Mars Pathfinder lander. It studied rocks and soil, imaged its surroundings, and communicated with Earth through the lander.",
+    "story": {
+      "chapters": [
+        {
+          "id": "sojourner-chapter-1",
+          "number": 1,
+          "title": "A Rover Stowed for the Journey",
+          "originalWording": "The rover, which has been named \"Sojourner\" is a six-wheeled vehicle, 280 mm high, 630 mm long, and 480 mm wide with a ground clearance of 130 mm, mounted on a \"rocker-bogie\" suspension. The rover was stowed on the lander at a height of 180 mm.",
+          "simplifiedWording": "Sojourner was a small six-wheeled rover that travelled to Mars folded against the lander.",
+          "sourceIds": ["nssdca-mesurpr"]
+        },
+        {
+          "id": "sojourner-chapter-2",
+          "number": 2,
+          "title": "Rolling onto Mars",
+          "originalWording": "At deployment, the rover extended to its full height and rolled down a deployment ramp at about 05:40 UT on 6 July 1997 (1:40 a.m. EDT).",
+          "simplifiedWording": "On 6 July 1997, Sojourner unfolded to full height and drove down a ramp onto Martian soil.",
+          "sourceIds": ["nssdca-mesurpr"]
+        },
+        {
+          "id": "sojourner-chapter-3",
+          "number": 3,
+          "title": "Driving from a Distance",
+          "originalWording": "The rover was controlled by an Earth-based operator who used images obtained by both the rover and lander systems. Note that the time delay was between 10 and 15 minutes depending on the relative position of Earth and Mars over the course of the mission, requiring some autonomous control, provided by a hazard avoidance system on the rover.",
+          "simplifiedWording": "People on Earth drove the rover using pictures from Mars, but the radio delay meant the rover had to avoid hazards on its own.",
+          "sourceIds": ["nssdca-mesurpr"]
+        },
+        {
+          "id": "sojourner-chapter-4",
+          "number": 4,
+          "title": "A Small Solar-Powered Machine",
+          "originalWording": "The on-board control system is an Intel 80C85 8-bit processor which runs about 100,000 instructions per second. The rover is powered by 0.2 square meters of solar cells, which will provide energy for several hours of operations per sol (1 Martian day = 24.6 Earth hours).",
+          "simplifiedWording": "A small computer and a 0.2 square meter solar array powered the rover for several hours of work each Martian day.",
+          "sourceIds": ["nssdca-mesurpr"]
+        },
+        {
+          "id": "sojourner-chapter-5",
+          "number": 5,
+          "title": "When the Signal Stopped",
+          "originalWording": "Images were taken and experiments performed by the lander and rover until 27 September 1997 when communications were lost for unknown reasons.",
+          "simplifiedWording": "The mission ended on 27 September 1997 when communications were lost. The archive does not state why.",
+          "sourceIds": ["nssdca-mesurpr", "nssdca-1996-068a"]
+        }
+      ]
+    },
+    "timeline": [
+      {
+        "id": "sojourner-launch",
+        "title": "Launch with Mars Pathfinder",
+        "date": "1996-12-04",
+        "description": "Sojourner launched stowed on the Mars Pathfinder spacecraft aboard a Delta II.",
+        "eventType": "launch",
+        "sourceIds": ["nssdca-mesurpr", "nssdca-1996-068a"]
+      },
+      {
+        "id": "sojourner-arrival",
+        "title": "Arrival at Mars",
+        "date": "1997-07-04",
+        "description": "The Mars Pathfinder spacecraft carrying Sojourner landed in Ares Vallis.",
+        "eventType": "arrival",
+        "sourceIds": ["nssdca-1996-068a"]
+      },
+      {
+        "id": "sojourner-deployment",
+        "title": "Deployment onto the surface",
+        "date": "1997-07-06",
+        "description": "Sojourner extended to full height and rolled down a deployment ramp at about 05:40 UT.",
+        "eventType": "deployment",
+        "sourceIds": ["nssdca-mesurpr"]
+      },
+      {
+        "id": "sojourner-primary-operations",
+        "title": "Primary surface objectives",
+        "date": "1997-07-06",
+        "description": "The primary objectives were scheduled for the first seven sols, all within about 10 meters of the lander.",
+        "eventType": "surface-operations",
+        "sourceIds": ["nssdca-mesurpr"]
+      },
+      {
+        "id": "sojourner-loss-of-contact",
+        "title": "Communications lost",
+        "date": "1997-09-27",
+        "description": "Rover and lander operations continued until communications were lost for unknown reasons.",
+        "eventType": "end-of-mission",
+        "sourceIds": ["nssdca-mesurpr", "nssdca-1996-068a"]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "sojourner-apxs",
+        "hardware": "Alpha-proton-X-ray spectrometer (APXS)",
+        "observation": "The APXS was used to assess the composition of rocks and soil, and images of all samples tested were transmitted to Earth.",
+        "scientificResult": "The instrument provided composition measurements of Martian rocks and soil during the surface mission.",
+        "simpleExplanation": "A spectrometer on the rover measured what Martian rocks and soil are made of.",
+        "detailedExplanation": "The alpha-proton-X-ray spectrometer was carried on the rover to assess the composition of rocks and soil. The rover's imaging system photographed each sample tested so the measurements could be compared with the surface material.",
+        "sourceIds": ["nssdca-mesurpr"]
+      },
+      {
+        "id": "sojourner-wheel-tracks",
+        "hardware": "Rover wheels and imaging system",
+        "observation": "Imaging of the rover wheel tracks was used to estimate soil properties, and rock and soil mechanics assessments were based on wheel abrasion and dust adherence.",
+        "scientificResult": "The rover's mobility and imaging data contributed to studies of Martian soil properties and rover performance.",
+        "simpleExplanation": "By photographing its own tracks, the rover helped scientists estimate how the Martian soil behaves.",
+        "detailedExplanation": "The mission used images of wheel tracks and observations of wheel abrasion and dust adherence to study soil mechanics. Rover performance was also monitored for tracking, drive performance, thermal behavior, and sensor performance.",
+        "sourceIds": ["nssdca-mesurpr"]
+      }
+    ],
+    "sources": [
+      {
+        "id": "nssdca-mesurpr",
+        "title": "Mars Pathfinder Rover — NSSDCA Master Catalog",
+        "organization": "NASA Space Science Data Coordinated Archive (NSSDCA)",
+        "url": "https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=MESURPR",
+        "supportedClaims": [
+          "Sojourner's dimensions, mass, power and computer.",
+          "The rover was stowed on the lander and deployed on 6 July 1997.",
+          "Earth-based driving with autonomous hazard avoidance.",
+          "The APXS and wheel-track soil studies.",
+          "Communications were lost on 27 September 1997."
+        ],
+        "originalWording": "The rover, which has been named \"Sojourner\" is a six-wheeled vehicle, 280 mm high, 630 mm long, and 480 mm wide with a ground clearance of 130 mm, mounted on a \"rocker-bogie\" suspension. … Images were taken and experiments performed by the lander and rover until 27 September 1997 when communications were lost for unknown reasons.",
+        "simplifiedExplanation": "The NSSDCA rover record documents Sojourner's hardware, deployment, operations and the end of the mission.",
+        "accessedOn": "2026-11-14"
+      },
+      {
+        "id": "nssdca-1996-068a",
+        "title": "Mars Pathfinder — NSSDCA Master Catalog",
+        "organization": "NASA Space Science Data Coordinated Archive (NSSDCA)",
+        "url": "https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=1996-068A",
+        "supportedClaims": [
+          "The Mars Pathfinder landing date and site.",
+          "The lander relayed rover data to Earth.",
+          "The mission's final loss of communications."
+        ],
+        "originalWording": "The lander dropped to the ground in 3.8 seconds and impacted at 16:56:55 UT (12:56:55 p.m. EDT) on 4 July 1997 … The bulk of the lander's task was to support the rover by imaging rover operations and relaying data from the rover to Earth.",
+        "simplifiedExplanation": "The lander record supplies the arrival date, landing site and the communication relay that supported Sojourner.",
+        "accessedOn": "2026-11-14"
+      }
+    ],
+    "image": {
+      "url": "https://nssdc.gsfc.nasa.gov/image/spacecraft/sojourner.jpg",
+      "alt": "Mars Pathfinder rover Sojourner",
+      "credit": "NASA/NSSDCA (image linked from the NSSDCA rover record)"
+    }
+  },
+  {
+    "id": "apollo-12-lunar-module-intrepid",
+    "slug": "apollo-12-intrepid",
+    "name": "Apollo 12 Lunar Module Intrepid",
+    "aliases": ["Intrepid", "LM-6", "Apollo 12 LM/ALSEP", "1969-099C"],
+    "body": "moon",
+    "missionName": "Apollo 12",
+    "artifactType": "lunar-module",
+    "parentMission": "Apollo Program",
+    "parentArtifactId": null,
+    "childArtifactIds": [],
+    "relationshipDescription": null,
+    "verificationStatus": "needs_review",
+    "editorialNote": "Archive fields are transcribed from NSSDCA, but the five-chapter narrative and discovery summaries have not completed the second-editor review required for public release. This record is excluded from the public API by default and is never promoted automatically.",
+    "nssdca": {
+      "recordTitle": "Apollo 12 Lunar Module / ALSEP",
+      "recordId": "1969-099C",
+      "recordUrl": "https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=1969-099C",
+      "checkedOn": "2026-11-14",
+      "originalSourceFields": [
+        { "field": "Launch Date", "value": "1969-11-14" },
+        { "field": "Launch Vehicle", "value": "Saturn 5" },
+        { "field": "Launch Site", "value": "Cape Canaveral, United States" },
+        { "field": "Mass", "value": "15235 kg" },
+        { "field": "Disciplines", "value": "Planetary Science; Space Physics; Human Crew" }
+      ]
+    },
+    "mission": {
+      "objective": "Make the second crewed lunar landing, deploy the Apollo Lunar Surface Experiments Package (ALSEP), and visit the Surveyor 3 spacecraft.",
+      "launchDate": "1969-11-14",
+      "arrivalDate": "1969-11-19",
+      "originalOperationalStatus": "The LM lifted off on 20 November at 14:25:47 UT (9:25 a.m. EST) after spending 31 hours 31 minutes on the Moon.",
+      "simplifiedOperationalStatus": "Intrepid stayed on the Moon for about 31.5 hours before lifting off to rejoin the command module.",
+      "finalDisposition": "The descent stage remained in Oceanus Procellarum. The ascent stage was intentionally crashed into the Moon at 3.94 S, 338.80 E, about 60 km from the Apollo 12 seismic station, creating the first recorded artificial moonquake."
+    },
+    "location": {
+      "label": "Oceanus Procellarum, Moon",
+      "confidence": "exact",
+      "explanation": "NSSDCA gives the landing coordinates as 3.0128 S, 23.4219 W, determined from Lunar Reconnaissance Orbiter images in the DE 421 mean Earth/polar rotation axis reference frame.",
+      "coordinates": {
+        "latitude": -3.0128,
+        "longitude": -23.4219,
+        "referenceFrame": "DE 421 mean Earth/polar rotation axis reference frame",
+        "sourceId": "nssdca-1969-099c"
+      }
+    },
+    "summary": "The lunar module for the second crewed Moon landing. Its descent stage stayed in Oceanus Procellarum, while its ascent stage was deliberately crashed to create a seismic signal.",
+    "story": {
+      "chapters": [
+        {
+          "id": "intrepid-chapter-1",
+          "number": 1,
+          "title": "The Second Landing",
+          "originalWording": "The Apollo 12 Lunar Module (LM) \"Intrepid\" was the second crewed vehicle to land on the Moon.",
+          "simplifiedWording": "Intrepid carried the second crew of astronauts to the lunar surface.",
+          "sourceIds": ["nssdca-1969-099c"]
+        },
+        {
+          "id": "intrepid-chapter-2",
+          "number": 2,
+          "title": "A Pinpoint Landing",
+          "originalWording": "The LM separated from the Command/Service Module (CSM) at 04:16:03 UT and landed at 06:54:35 UT (1:54:35 a.m. EST) on 19 November 1969 in the Oceanus Procellarum area at 3.0128 S latitude, 23.4219 W longitude … within about 180 meters of the Surveyor 3 spacecraft.",
+          "simplifiedWording": "Intrepid landed in Oceanus Procellarum within about 180 meters of the robotic lander Surveyor 3.",
+          "sourceIds": ["nssdca-1969-099c"]
+        },
+        {
+          "id": "intrepid-chapter-3",
+          "number": 3,
+          "title": "A Visit to Surveyor 3",
+          "originalWording": "On the second of these walks … they completed a 1.3 km geology traverse, collecting samples and taking photographs, and visited the Surveyor 3 spacecraft, bringing back about 10 kg of parts for later examination on Earth.",
+          "simplifiedWording": "During their second moonwalk, Conrad and Bean walked to Surveyor 3 and brought pieces of it home.",
+          "sourceIds": ["nssdca-1969-099c"]
+        },
+        {
+          "id": "intrepid-chapter-4",
+          "number": 4,
+          "title": "Science Left Behind",
+          "originalWording": "The Apollo Lunar Surface Experiments Package (ALSEP) consisted of a set of scientific instruments emplaced at the landing site by the astronauts.",
+          "simplifiedWording": "The crew set up a powered science station that kept sending data back to Earth after they left.",
+          "sourceIds": ["nssdca-1969-099c"]
+        },
+        {
+          "id": "intrepid-chapter-5",
+          "number": 5,
+          "title": "An Artificial Moonquake",
+          "originalWording": "After docking with the CSM (piloted by Richard F. Gordon Jr.) at 17:58:22 UT, the LM was jettisoned at 20:21:30 and intentionally crashed into the Moon, striking at 3.94 S, 338.80 E, about 60 km from the seismic station at the Apollo 12 landing site, creating the first recorded artificial moonquake.",
+          "simplifiedWording": "The empty ascent stage was deliberately crashed near the landing site, and the seismometer recorded the impact.",
+          "sourceIds": ["nssdca-1969-099c"]
+        }
+      ]
+    },
+    "timeline": [
+      {
+        "id": "intrepid-launch",
+        "title": "Launch from Cape Canaveral",
+        "date": "1969-11-14",
+        "description": "Apollo 12 launched on a Saturn 5 from Cape Canaveral, United States.",
+        "eventType": "launch",
+        "sourceIds": ["nssdca-1969-099c"]
+      },
+      {
+        "id": "intrepid-landing",
+        "title": "Landing near Surveyor 3",
+        "date": "1969-11-19",
+        "description": "Intrepid landed in Oceanus Procellarum at 06:54:35 UT, within about 180 meters of Surveyor 3.",
+        "eventType": "landing",
+        "sourceIds": ["nssdca-1969-099c"]
+      },
+      {
+        "id": "intrepid-alsep",
+        "title": "ALSEP turned on",
+        "date": "1969-11-19",
+        "description": "The ALSEP central station was turned on at 14:21 UT.",
+        "eventType": "deployment",
+        "sourceIds": ["nssdca-1969-099c"]
+      },
+      {
+        "id": "intrepid-liftoff",
+        "title": "Ascent stage lifts off",
+        "date": "1969-11-20",
+        "description": "The LM lifted off at 14:25:47 UT after 31 hours and 31 minutes on the Moon.",
+        "eventType": "departure",
+        "sourceIds": ["nssdca-1969-099c"]
+      },
+      {
+        "id": "intrepid-impact",
+        "title": "Ascent stage intentionally crashed",
+        "date": "1969-11-20",
+        "description": "The jettisoned ascent stage struck the Moon at 3.94 S, 338.80 E, producing the first recorded artificial moonquake.",
+        "eventType": "afterlife",
+        "sourceIds": ["nssdca-1969-099c"]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "intrepid-alsep-seismometer",
+        "hardware": "ALSEP passive seismometer",
+        "observation": "The Apollo 12 ALSEP included a passive seismometer designed to measure seismic activity and physical properties of the lunar crust and interior.",
+        "scientificResult": "The later intentional impact of the LM ascent stage created the first recorded artificial moonquake.",
+        "simpleExplanation": "A seismometer on the surface recorded the deliberate crash of the empty lunar module.",
+        "detailedExplanation": "The Apollo 12 ALSEP central station supplied power and communications to a suite of instruments including a passive seismometer. After the crew departed, the jettisoned ascent stage was aimed at the Moon about 60 km from the station, and the resulting seismic signal was recorded.",
+        "sourceIds": ["nssdca-1969-099c"]
+      },
+      {
+        "id": "intrepid-surveyor-parts",
+        "hardware": "Surveyor 3 television camera and other parts",
+        "observation": "The crew removed about 10 kg of parts from Surveyor 3, including the television camera, for later examination on Earth.",
+        "scientificResult": "The returned parts allowed engineers to examine hardware that had spent more than two years on the lunar surface.",
+        "simpleExplanation": "Pieces of a spacecraft that had sat on the Moon for years were brought home for study.",
+        "detailedExplanation": "Conrad and Bean visited Surveyor 3 during their second moonwalk and removed hardware for examination. NSSDCA notes that the Surveyor 3 camera is now displayed at the Smithsonian National Air and Space Museum.",
+        "sourceIds": ["nssdca-1969-099c"]
+      }
+    ],
+    "sources": [
+      {
+        "id": "nssdca-1969-099c",
+        "title": "Apollo 12 Lunar Module / ALSEP — NSSDCA Master Catalog",
+        "organization": "NASA Space Science Data Coordinated Archive (NSSDCA)",
+        "url": "https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=1969-099C",
+        "supportedClaims": [
+          "Intrepid was the second crewed vehicle to land on the Moon.",
+          "The landing site and its proximity to Surveyor 3.",
+          "The ALSEP instruments and their operation.",
+          "The intentional crash of the ascent stage."
+        ],
+        "originalWording": "The Apollo 12 Lunar Module (LM) \"Intrepid\" was the second crewed vehicle to land on the Moon. … After docking with the CSM (piloted by Richard F. Gordon Jr.) at 17:58:22 UT, the LM was jettisoned at 20:21:30 and intentionally crashed into the Moon, striking at 3.94 S, 338.80 E, about 60 km from the seismic station at the Apollo 12 landing site, creating the first recorded artificial moonquake.",
+        "simplifiedExplanation": "The NSSDCA record documents the landing, the Surveyor 3 visit, the ALSEP deployment and the deliberate crash of the ascent stage.",
+        "accessedOn": "2026-11-14"
+      }
+    ],
+    "image": {
+      "url": "https://nssdc.gsfc.nasa.gov/planetary/image/apollo12_lunar_module.jpg",
+      "alt": "Apollo 12 Lunar Module Intrepid",
+      "credit": "NASA/NSSDCA (image linked from the NSSDCA Apollo 12 record)"
+    }
+  }
+]

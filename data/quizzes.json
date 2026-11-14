@@ -1,0 +1,81 @@
+[
+  {
+    "artifactSlug": "apollo-11-eagle",
+    "title": "Mission Debrief: Apollo 11 Eagle",
+    "questions": [
+      {
+        "id": "eagle-debrief-1",
+        "prompt": "After Eagle's ascent stage was jettisoned into lunar orbit, what does the NSSDCA record say happened to it?",
+        "options": [
+          { "id": "recovered", "text": "It was recovered and returned to Earth." },
+          { "id": "tracked", "text": "It is still tracked in a stable lunar orbit today." },
+          {
+            "id": "unknown-crash",
+            "text": "Its fate is unknown, but it is assumed to have crashed into the Moon within 1 to 4 months."
+          },
+          { "id": "left-on-surface", "text": "It was left standing at Tranquility Base." }
+        ],
+        "correctOptionId": "unknown-crash",
+        "explanation": "NSSDCA states that the fate of the LM is not known, but it is assumed to have crashed into the lunar surface sometime within the following 1 to 4 months. The descent stage remained at Tranquility Base.",
+        "sourceIds": ["nssdca-1969-059c"]
+      }
+    ]
+  },
+  {
+    "artifactSlug": "surveyor-3",
+    "title": "Mission Debrief: Surveyor 3",
+    "questions": [
+      {
+        "id": "surveyor-3-debrief-1",
+        "prompt": "Which crewed Apollo mission landed near Surveyor 3 and sent astronauts to examine it?",
+        "options": [
+          { "id": "apollo-11", "text": "Apollo 11" },
+          { "id": "apollo-12", "text": "Apollo 12" },
+          { "id": "apollo-14", "text": "Apollo 14" },
+          { "id": "apollo-15", "text": "Apollo 15" }
+        ],
+        "correctOptionId": "apollo-12",
+        "explanation": "The NSSDCA record states that Apollo 12 landed within about 180 m of Surveyor 3 on 19 November 1969. Pete Conrad and Alan Bean visited the spacecraft during their second moonwalk and removed about 10 kg of parts.",
+        "sourceIds": ["nssdca-1967-035a"]
+      }
+    ]
+  },
+  {
+    "artifactSlug": "mars-pathfinder-lander",
+    "title": "Mission Debrief: Mars Pathfinder Lander",
+    "questions": [
+      {
+        "id": "pathfinder-lander-debrief-1",
+        "prompt": "What name was given to the Mars Pathfinder lander?",
+        "options": [
+          { "id": "ares-station", "text": "Ares Vallis Station" },
+          { "id": "sagan", "text": "Sagan Memorial Station" },
+          { "id": "sojourner-base", "text": "Sojourner Base" },
+          { "id": "chryse", "text": "Chryse Planitia Station" }
+        ],
+        "correctOptionId": "sagan",
+        "explanation": "The NSSDCA record names the lander the Sagan Memorial Station. It gives the landing site in the Ares Vallis region of Mars at 19.33 N, 33.55 W.",
+        "sourceIds": ["nssdca-1996-068a"]
+      }
+    ]
+  },
+  {
+    "artifactSlug": "sojourner",
+    "title": "Mission Debrief: Sojourner",
+    "questions": [
+      {
+        "id": "sojourner-debrief-1",
+        "prompt": "How did Sojourner get from the lander onto the Martian surface?",
+        "options": [
+          { "id": "airdrop", "text": "It was dropped from orbit in a protective shell." },
+          { "id": "ramp", "text": "It extended to full height and rolled down a deployment ramp." },
+          { "id": "astronaut", "text": "An astronaut placed it on the ground." },
+          { "id": "crane", "text": "It was lowered by a sky crane." }
+        ],
+        "correctOptionId": "ramp",
+        "explanation": "NSSDCA states that at deployment the rover extended to its full height and rolled down a deployment ramp at about 05:40 UT on 6 July 1997.",
+        "sourceIds": ["nssdca-mesurpr"]
+      }
+    ]
+  }
+]

@@ -1,30 +1,48 @@
 {
-  "name": "echoes-debrief-a11y",
+  "name": "echoes-off-world-field-guide",
+  "version": "1.0.0",
   "private": true,
-  "version": "0.1.0",
-  "type": "module",
+  "description": "Echoes — Off-World Field Guide: NASA Space Apps Challenge 2026 backend and frontend integration foundation, plus Member 3 standalone deliverables.",
+  "workspaces": [
+    "shared",
+    "backend",
+    "frontend"
+  ],
   "scripts": {
-    "dev": "vite",
-    "build": "tsc --noEmit && vite build",
-    "typecheck": "tsc --noEmit",
-    "test": "vitest run",
-    "test:watch": "vitest"
+    "build:shared": "tsc -p shared/tsconfig.json",
+    "predev": "npm run build:shared",
+    "dev": "node scripts/dev.mjs",
+    "dev:backend": "npm run build:shared && npm run dev --workspace=@echoes/backend",
+    "dev:frontend": "npm run build:shared && npm run dev --workspace=@echoes/frontend",
+    "build": "npm run build:shared && npm run build --workspace=@echoes/backend && npm run build --workspace=@echoes/frontend",
+    "test": "npm run build:shared && npm run test --workspace=@echoes/backend && npm run test --workspace=@echoes/frontend",
+    "typecheck": "npm run build:shared && npm run typecheck --workspace=@echoes/backend && npm run typecheck --workspace=@echoes/frontend",
+    "prestart": "npm run build",
+    "start": "npm run start --workspace=@echoes/backend",
+    "test:watch": "vitest run"
   },
   "dependencies": {
+    "@echoes/shared": "*",
+    "express": "^4.21.2",
     "react": "18.3.1",
-    "react-dom": "18.3.1"
+    "react-dom": "18.3.1",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "6.6.3",
     "@testing-library/react": "16.0.1",
     "@testing-library/user-event": "14.5.2",
-    "@types/react": "18.3.12",
-    "@types/react-dom": "18.3.1",
-    "@vitejs/plugin-react": "4.3.3",
+    "@types/node": "^22.10.2",
+    "@types/react": "^18.3.18",
+    "@types/react-dom": "^18.3.5",
+    "@vitejs/plugin-react": "^4.3.4",
     "jsdom": "25.0.1",
-    "typescript": "5.6.3",
-    "vite": "5.4.11",
-    "vitest": "2.1.5",
+    "typescript": "^5.6.3",
+    "vite": "^5.4.11",
+    "vitest": "^2.1.8",
     "vitest-axe": "0.1.0"
+  },
+  "engines": {
+    "node": ">=20"
   }
 }
