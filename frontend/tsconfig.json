@@ -16,7 +16,7 @@
     "paths": {
       "@echoes/shared": ["../shared/src/index.ts"]
     },
-    "types": ["vite/client", "node"]
+    "types": ["vite/client", "node", "vitest/globals", "@testing-library/jest-dom"]
   },
   "include": ["src", "vite.config.ts"]
 }

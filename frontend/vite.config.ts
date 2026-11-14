@@ -16,7 +16,13 @@ export default defineConfig({
     strictPort: true,
   },
   test: {
-    environment: 'node',
+    environment: 'jsdom',
+    environmentOptions: {
+      jsdom: {
+        url: 'http://localhost',
+      },
+    },
+    setupFiles: [path.resolve(__dirname, './test-setup.ts')],
     include: ['src/**/*.test.ts', 'src/**/*.test.tsx'],
   },
 });

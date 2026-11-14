@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { MissionDebriefFeature } from '../features/science-evidence/MissionDebriefFeature';
-import { sampleQuiz } from './sampleQuiz';
+import { MissionDebriefFeature } from './MissionDebriefFeature';
+import { sampleQuiz } from '../../dev/sampleQuiz';
 
 /** Standalone harness. In the real app the parent (Member 1) passes the quiz via props. */
 export function DebriefPreview() {

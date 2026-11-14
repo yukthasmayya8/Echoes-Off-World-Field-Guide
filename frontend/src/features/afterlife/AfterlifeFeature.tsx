@@ -120,7 +120,7 @@ function SourceChips({
 }
 
 function StatusPanel({ artifact }: { artifact: Artifact }) {
-  const { status } = artifact;
+  const status = artifact.legacyStatus ?? {};
   const rows = [
     {
       label: 'Operational status',
@@ -366,7 +366,7 @@ function AfterlifeBody({
               <div className={styles.revealBlock}>
                 <h4>Final known physical state</h4>
                 <p className={styles.bigValue}>
-                  {humanize(artifact.status?.physicalDisposition, 'Unknown')}
+                  {humanize(artifact.legacyStatus?.physicalDisposition, 'Unknown')}
                 </p>
               </div>
 

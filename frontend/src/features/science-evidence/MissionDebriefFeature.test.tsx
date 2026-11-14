@@ -1,10 +1,10 @@
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { axe } from 'vitest-axe';
-import { vi } from 'vitest';
-import { MissionDebriefFeature } from '../MissionDebriefFeature';
-import { sampleQuiz } from '../../../dev/sampleQuiz';
-import type { Quiz } from '../../../types';
+import { describe, expect, it, vi } from 'vitest';
+import { MissionDebriefFeature } from './MissionDebriefFeature';
+import { sampleQuiz } from '../../dev/sampleQuiz';
+import type { Quiz } from '../../types';
 
 const setup = (props: Partial<Parameters<typeof MissionDebriefFeature>[0]> = {}) => {
   const onOpenSource = vi.fn();
