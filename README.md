@@ -69,12 +69,37 @@ the commands used to run and verify the application.
 
 ## Frontend features
 
+The app opens on a Mission Control dashboard rather than a long document. The
+left navigation groups every module, and selecting an artifact keeps it selected
+across the Atlas, Storybook, Time Machine, Science Reveal, Evidence Detective,
+Artifact DNA, Space Archaeologist, Guided Routes, Fact Vault, Unknowns
+Observatory, Explore Deeper, Compare, Legacy Bridge, Teacher Mode, Search and
+Discovery Passport.
+
 Feature components live under `frontend/src/features/`:
 
-- `atlas/` — NSSDCA archive browser.
-- `story/` — five-chapter artifact story.
+- `dashboard/` — Mission Control home screen.
+- `atlas/` — zoomable, pannable Moon and Mars coordinate charts with confidence
+  markers, text fallback and a selected-location panel.
+- `story/` — five-chapter artifact storybook with narration.
+- `narration/` — browser Web Speech narration in three styles.
 - `afterlife/` — mission timeline and final disposition.
+- `time-machine/` — interactive mission chronology.
 - `science-evidence/` — discovery evidence and mission debrief.
+- `evidence-detective/` — claim-evaluation challenge.
+- `artifact-dna/` — documented hardware explorer.
+- `space-archaeologist/` — seven-step guided investigation.
+- `guided-route/` — curated, ordered artifact journeys.
+- `fact-vault/` — searchable sourced facts.
+- `unknowns/` — documented uncertainty separated from dataset gaps.
+- `explore-deeper/` — source-grounded retrieval, not a generative chatbot.
+- `compare/` — side-by-side artifact comparison.
+- `legacy-bridge/` — documented links separated from thematic comparisons.
+- `space-heritage/` — site significance and a decision activity.
+- `nasa-resources/` — provenance, limitations and compliance notes.
+- `discovery-passport/` — anonymous local progress and badges.
+- `teacher-mode/` — optional printable classroom kit.
+- `search/` — global search across every verified record.
 - `integration/` — typed contracts, fallbacks, and lazy registration.
 
 The parent application owns loading, selection, errors, source navigation, and

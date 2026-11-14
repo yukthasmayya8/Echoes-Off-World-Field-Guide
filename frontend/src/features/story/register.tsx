@@ -13,20 +13,22 @@ import type {
 } from '../integration/featureTypes';
 import { toLegacyArtifact } from '../integration/legacyAdapters';
 
-function MoonStorybookFeature({ artifact, narrationChapters }: MoonStoriesFeatureProps) {
+function MoonStorybookFeature({ artifact, narrationChapters, onComplete }: MoonStoriesFeatureProps) {
   return (
     <StoryFeature
       artifact={toLegacyArtifact(artifact)}
       narrationChapters={narrationChapters ?? artifact.story.chapters}
+      onComplete={onComplete}
     />
   );
 }
 
-function MarsStorybookFeature({ artifact, narrationChapters }: MarsStoriesFeatureProps) {
+function MarsStorybookFeature({ artifact, narrationChapters, onComplete }: MarsStoriesFeatureProps) {
   return (
     <StoryFeature
       artifact={toLegacyArtifact(artifact)}
       narrationChapters={narrationChapters ?? artifact.story.chapters}
+      onComplete={onComplete}
     />
   );
 }

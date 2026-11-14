@@ -15,6 +15,7 @@ function AtlasArchiveFeature({
   selectedArtifactId,
   onSelectArtifact,
   locations,
+  onOpenView,
 }: AtlasFeatureProps) {
   const adaptedRecords: AtlasRecord[] = records.map((entry) =>
     toAtlasRecord(entry, locations?.[entry.slug]),
@@ -25,6 +26,7 @@ function AtlasArchiveFeature({
       records={adaptedRecords}
       selectedArtifactId={selectedArtifactId}
       onSelectArtifact={onSelectArtifact}
+      onOpenView={onOpenView}
     />
   );
 }

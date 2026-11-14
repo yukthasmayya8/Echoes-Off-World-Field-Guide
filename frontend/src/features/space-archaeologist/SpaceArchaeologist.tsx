@@ -32,9 +32,11 @@ type StepId = (typeof STEPS)[number]['id'];
 interface SpaceArchaeologistProps {
   artifact: Artifact;
   sources: Source[];
+  /** Optional passport hook, fired when the investigation reaches step 7. */
+  onComplete?: () => void;
 }
 
-export function SpaceArchaeologist({ artifact, sources }: SpaceArchaeologistProps) {
+export function SpaceArchaeologist({ artifact, sources, onComplete }: SpaceArchaeologistProps) {
   const [stepIndex, setStepIndex] = useState<StepId>('examine');
   const [findings, setFindings] = useState<Record<string, string>>({});
 
@@ -47,7 +49,9 @@ export function SpaceArchaeologist({ artifact, sources }: SpaceArchaeologistProp
   const next = () => {
     const currentIndex = STEPS.findIndex((s) => s.id === stepIndex);
     if (currentIndex < STEPS.length - 1) {
-      setStepIndex(STEPS[currentIndex + 1].id);
+      const nextStep = STEPS[currentIndex + 1];
+      setStepIndex(nextStep.id);
+      if (nextStep.id === 'complete') onComplete?.();
     }
   };
 

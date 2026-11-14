@@ -19,9 +19,11 @@ import {
 interface EvidenceDetectiveProps {
   artifact: Artifact;
   sources: Source[];
+  /** Optional passport hook, fired when every challenge has been attempted. */
+  onComplete?: () => void;
 }
 
-export function EvidenceDetective({ artifact, sources }: EvidenceDetectiveProps) {
+export function EvidenceDetective({ artifact, sources, onComplete }: EvidenceDetectiveProps) {
   const challenges = getEvidenceChallenges(artifact);
   const [challengeIndex, setChallengeIndex] = useState(0);
   const [verdict, setVerdict] = useState<EvidenceVerdict | null>(null);
@@ -33,7 +35,8 @@ export function EvidenceDetective({ artifact, sources }: EvidenceDetectiveProps)
   const selectVerdict = useCallback((v: EvidenceVerdict) => {
     setVerdict(v);
     setShowExplanation(true);
-  }, []);
+    if (challengeIndex === challenges.length - 1) onComplete?.();
+  }, [challengeIndex, challenges.length, onComplete]);
 
   const nextChallenge = useCallback(() => {
     setVerdict(null);

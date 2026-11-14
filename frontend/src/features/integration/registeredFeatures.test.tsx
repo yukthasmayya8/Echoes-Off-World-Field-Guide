@@ -10,6 +10,7 @@ import {
   AtlasSlot,
   discoverFeatures,
   getRegisteredFeatures,
+  GuidedRouteSlot,
   MarsStoriesSlot,
   MissionDebriefSlot,
   MoonStoriesSlot,
@@ -20,6 +21,7 @@ import type { AtlasFeatureProps, FeatureKey } from './featureTypes';
 import {
   getLocalArtifactBySlug,
   getLocalQuiz,
+  getLocalRoutes,
   searchLocalCatalog,
 } from '../../services/localFallback';
 
@@ -30,6 +32,14 @@ if (!sojourner) throw new Error('Fixture Mars artifact missing');
 
 const quiz = getLocalQuiz('apollo-11-eagle');
 if (!quiz) throw new Error('Fixture quiz missing');
+
+const routes = getLocalRoutes();
+const routeArtifacts = [
+  getLocalArtifactBySlug('apollo-11-eagle'),
+  getLocalArtifactBySlug('surveyor-3'),
+  getLocalArtifactBySlug('mars-pathfinder-lander'),
+  getLocalArtifactBySlug('sojourner'),
+].filter((artifact): artifact is NonNullable<typeof artifact> => Boolean(artifact));
 
 const noopSource = () => undefined;
 const noopSelect = () => undefined;
@@ -64,6 +74,7 @@ beforeAll(async () => {
     'afterlife',
     'scienceEvidence',
     'missionDebrief',
+    'guidedRoute',
   ] satisfies FeatureKey[]) {
     unregisterFeature(key);
   }
@@ -71,11 +82,12 @@ beforeAll(async () => {
 });
 
 describe('registered teammate features', () => {
-  it('discovers all five teammate features across the six keys', () => {
+  it('discovers every registered feature across all seven keys', () => {
     expect([...getRegisteredFeatures()].sort()).toEqual(
       [
         'afterlife',
         'atlas',
+        'guidedRoute',
         'marsStories',
         'missionDebrief',
         'moonStories',
@@ -155,5 +167,55 @@ describe('registered teammate features', () => {
     expect(screen.getByText(/Mission debrief/)).toBeTruthy();
     expect(screen.getByText(quiz.questions[0].prompt)).toBeTruthy();
     expect(document.body.textContent).not.toContain('Awaiting teammate UI');
+  });
+
+  it('mounts the real Guided Story Route with steps, progress and module handoff', () => {
+    const onSelectArtifact = vi.fn();
+    const onOpenView = vi.fn();
+    const route = routes[0];
+    if (!route) throw new Error('Fixture route missing');
+
+    render(
+      <GuidedRouteSlot
+        routes={routes}
+        artifacts={routeArtifacts}
+        onSelectArtifact={onSelectArtifact}
+        onOpenView={onOpenView}
+      />,
+    );
+
+    expect(screen.getByRole('heading', { name: 'Guided Story Routes' })).toBeTruthy();
+    expect(screen.getAllByText(route.steps[0].title).length).toBeGreaterThan(0);
+    expect(document.body.textContent).not.toContain('Awaiting teammate UI');
+
+    fireEvent.click(screen.getByRole('button', { name: /Open storybook/i }));
+    expect(onSelectArtifact).toHaveBeenCalledWith(route.steps[0].artifactSlug);
+    expect(onOpenView).toHaveBeenCalledWith(route.steps[0].artifactSlug, 'story');
+
+    // Opening a module from a stop records that stop as explored, so the
+    // explicit completion control is now shown in its disabled, done state.
+    const doneButton = screen.getByRole('button', { name: /Stop explored/i });
+    expect((doneButton as HTMLButtonElement).disabled).toBe(true);
+  });
+
+  it('derives route progress from the parent passport so it survives navigation', () => {
+    const route = routes[0];
+    if (!route) throw new Error('Fixture route missing');
+    const firstSlug = route.steps[0].artifactSlug;
+
+    render(
+      <GuidedRouteSlot
+        routes={routes}
+        artifacts={routeArtifacts}
+        onSelectArtifact={vi.fn()}
+        onOpenView={vi.fn()}
+        exploredSlugs={[firstSlug]}
+        onMarkExplored={vi.fn()}
+      />,
+    );
+
+    expect(screen.getByText('50%')).toBeTruthy();
+    expect(screen.getByRole('button', { name: /Stop explored/i })).toBeTruthy();
+    expect(screen.getAllByText(route.steps[0].title).length).toBeGreaterThan(0);
   });
 });

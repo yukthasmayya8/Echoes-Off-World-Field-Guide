@@ -45,11 +45,14 @@ export function StoryFeature({
   activeChapterKey,
   onOpenSources,
   narrationChapters,
+  onComplete,
 }: {
   artifact: Artifact;
   activeChapterKey?: ChapterKey;
   onOpenSources?: () => void;
   narrationChapters?: StoryChapter[];
+  /** Optional passport hook fired when the visitor reaches the final chapter. */
+  onComplete?: () => void;
 }): JSX.Element {
   const [chapterIndex, setChapterIndex] = useState(0);
   const [imageFailed, setImageFailed] = useState(false);
@@ -102,6 +105,12 @@ export function StoryFeature({
   useEffect(() => {
     setExpanded(false);
   }, [chapterIndex]);
+
+  useEffect(() => {
+    if (chapterIndex === CHAPTERS.length - 1 && orderedChapters[chapterIndex]?.chapter) {
+      onComplete?.();
+    }
+  }, [chapterIndex, orderedChapters, onComplete]);
 
   const goTo = (index: number) => {
     if (index < 0 || index >= CHAPTERS.length || !orderedChapters[index]?.chapter) return;

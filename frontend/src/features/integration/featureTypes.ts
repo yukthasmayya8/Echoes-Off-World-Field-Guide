@@ -38,6 +38,8 @@ export interface AtlasFeatureProps {
   onSelectArtifact: SelectArtifactHandler;
   /** Location index built by the parent from hydrated artifact records. */
   locations?: Record<string, AtlasFeatureLocation>;
+  /** Optional parent navigation from the selected-location panel. */
+  onOpenView?: (artifactSlug: string, view: 'story' | 'timeline' | 'science' | 'evidence') => void;
 }
 
 /** 2. Moon Artifact Storybook. */
@@ -46,6 +48,8 @@ export interface MoonStoriesFeatureProps {
   onOpenSource: OpenSourceHandler;
   /** Shared story chapters for cinematic narration. */
   narrationChapters?: StoryChapter[];
+  /** Optional passport hook fired when the visitor reaches the story ending. */
+  onComplete?: () => void;
 }
 
 /** 3. Mars Artifact Storybook. */
@@ -54,6 +58,8 @@ export interface MarsStoriesFeatureProps {
   onOpenSource: OpenSourceHandler;
   /** Shared story chapters for cinematic narration. */
   narrationChapters?: StoryChapter[];
+  /** Optional passport hook fired when the visitor reaches the story ending. */
+  onComplete?: () => void;
 }
 
 /** 4. Mission Timeline & Afterlife. */
@@ -85,6 +91,19 @@ export interface GuidedRouteFeatureProps {
   routes: GuidedRoute[];
   artifacts: Artifact[];
   onSelectArtifact: SelectArtifactHandler;
+  /**
+   * Optional parent-owned navigation. When supplied, the route can hand the
+   * visitor straight to the storybook, timeline or evidence view for a step.
+   */
+  onOpenView?: (artifactSlug: string, view: 'story' | 'timeline' | 'science' | 'evidence') => void;
+  /**
+   * Artifact slugs the visitor has already explored, owned by the parent's
+   * Discovery Passport. Route progress derives from this so it survives
+   * navigation between views.
+   */
+  exploredSlugs?: string[];
+  /** Optional parent-owned passport hook fired when a stop is marked explored. */
+  onMarkExplored?: (artifactSlug: string) => void;
 }
 
 export interface FeaturePropsMap {
