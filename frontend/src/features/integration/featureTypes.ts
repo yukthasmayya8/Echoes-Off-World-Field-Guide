@@ -44,12 +44,16 @@ export interface AtlasFeatureProps {
 export interface MoonStoriesFeatureProps {
   artifact: Artifact;
   onOpenSource: OpenSourceHandler;
+  /** Shared story chapters for cinematic narration. */
+  narrationChapters?: StoryChapter[];
 }
 
 /** 3. Mars Artifact Storybook. */
 export interface MarsStoriesFeatureProps {
   artifact: Artifact;
   onOpenSource: OpenSourceHandler;
+  /** Shared story chapters for cinematic narration. */
+  narrationChapters?: StoryChapter[];
 }
 
 /** 4. Mission Timeline & Afterlife. */

@@ -1,4 +1,4 @@
-import { useMemo, type ReactNode } from 'react';
+import { useCallback, useEffect, useMemo, type ReactNode, useState } from 'react';
 import { DEMO_MODE_LABEL, type Body } from '@echoes/shared';
 import {
   AfterlifeSlot,
@@ -10,7 +10,19 @@ import {
   ScienceEvidenceSlot,
 } from './features/integration/FeatureRegistry';
 import type { AtlasFeatureLocation } from './features/integration/featureTypes';
+import {
+  type ThemeId,
+  DEFAULT_THEME,
+  loadThemeFromStorage,
+  saveThemeToStorage,
+  getTheme,
+  getAllThemes,
+} from './app/theme';
 import { useEchoesApp, type DestinationFilter } from './app/useEchoesApp';
+import { EvidenceDetective } from './features/evidence-detective/EvidenceDetective';
+import { TimeMachine } from './features/time-machine/TimeMachine';
+import { ArtifactDna } from './features/artifact-dna/ArtifactDna';
+import { SpaceArchaeologist } from './features/space-archaeologist/SpaceArchaeologist';
 
 const DESTINATIONS: Array<{ value: DestinationFilter; label: string }> = [
   { value: 'all', label: 'All destinations' },
@@ -28,6 +40,21 @@ function Panel({ title, children }: { title: string; children: ReactNode }) {
     <section className="panel">
       <h2 className="panel__title">{title}</h2>
       {children}
+    </section>
+  );
+}
+
+function FeatureCard({
+  title,
+  children,
+}: {
+  title: string;
+  children: ReactNode;
+}) {
+  return (
+    <section className="feature-card">
+      <h3 className="feature-card__title">{title}</h3>
+      <div className="feature-card__body">{children}</div>
     </section>
   );
 }
@@ -63,10 +90,26 @@ export default function App() {
     retry,
   } = useEchoesApp();
 
-  /**
-   * Location index for the Atlas map, keyed by slug. Labels and coordinates
-   * are copied verbatim from the hydrated verified records.
-   */
+  /* ---------------------------------------------------------------- Theme */
+  const [themeId, setThemeId] = useState<ThemeId>(DEFAULT_THEME);
+
+  useEffect(() => {
+    const stored = loadThemeFromStorage();
+    setThemeId(stored);
+    document.documentElement.setAttribute('data-theme', stored);
+  }, []);
+
+  const theme = getTheme(themeId);
+
+  const handleThemeChange = useCallback((next: ThemeId) => {
+    setThemeId(next);
+    document.documentElement.setAttribute('data-theme', next);
+    saveThemeToStorage(next);
+  }, []);
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', themeId);
+  }, [themeId]);
   const artifactLocations = useMemo(() => {
     const index: Record<string, AtlasFeatureLocation> = {};
     for (const artifact of artifacts) {
@@ -88,7 +131,7 @@ export default function App() {
   }, [artifacts]);
 
   return (
-    <div className="app-shell">
+    <div className="app-shell" data-theme={themeId}>
       <header className="hero">
         <div>
           <p className="hero__eyebrow">NASA Space Apps Challenge 2026</p>
@@ -124,6 +167,23 @@ export default function App() {
             <span className="stat__label">curated routes</span>
           </span>
         </div>
+        <button
+          type="button"
+          className="theme-selector"
+          onClick={() => {
+            const themes: ThemeId[] = [
+              'lunar-night',
+              'martian-dawn',
+              'space-observatory',
+              'mission-control',
+            ];
+            const currentIndex = themes.indexOf(themeId);
+            handleThemeChange(themes[(currentIndex + 1) % themes.length]);
+          }}
+        >
+          <span className="theme-dot" aria-hidden="true" />
+          {theme.name}
+        </button>
       </header>
 
       {sourceMode === 'demo' ? (
@@ -229,50 +289,73 @@ export default function App() {
 
         {selectedArtifact ? (
           <>
-            <Panel title={BODY_LABELS[selectedArtifact.body]}>
-              {selectedArtifact.body === 'moon' ? (
-                <MoonStoriesSlot
+            <div className="feature-grid">
+              <FeatureCard title={BODY_LABELS[selectedArtifact.body]}>
+                {selectedArtifact.body === 'moon' ? (
+                  <MoonStoriesSlot
+                    artifact={selectedArtifact}
+                    onOpenSource={openSource}
+                    narrationChapters={selectedArtifact.story.chapters}
+                  />
+                ) : (
+                  <MarsStoriesSlot
+                    artifact={selectedArtifact}
+                    onOpenSource={openSource}
+                    narrationChapters={selectedArtifact.story.chapters}
+                  />
+                )}
+              </FeatureCard>
+
+              <FeatureCard title="Mission Timeline & Afterlife">
+                <AfterlifeSlot
+                  artifact={selectedArtifact}
+                  onOpenSource={openSource}
+                  onSelectChapter={selectChapter}
+                />
+                {activeChapter ? (
+                  <p className="status-line">
+                    Chapter focus: {activeChapter.number}. {activeChapter.title}
+                  </p>
+                ) : null}
+              </FeatureCard>
+
+              <FeatureCard title="Science Evidence & Discovery">
+                <ScienceEvidenceSlot
                   artifact={selectedArtifact}
                   onOpenSource={openSource}
                 />
-              ) : (
-                <MarsStoriesSlot
-                  artifact={selectedArtifact}
-                  onOpenSource={openSource}
-                />
-              )}
-            </Panel>
+              </FeatureCard>
 
-            <Panel title="4. Mission Timeline & Afterlife">
-              <AfterlifeSlot
-                artifact={selectedArtifact}
-                onOpenSource={openSource}
-                onSelectChapter={selectChapter}
-              />
-              {activeChapter ? (
-                <p className="status-line">
-                  Chapter focus: {activeChapter.number}. {activeChapter.title}
-                </p>
-              ) : null}
-            </Panel>
+              <FeatureCard title="Mission Debrief">
+                {quiz ? (
+                  <MissionDebriefSlot
+                    quiz={quiz}
+                    artifact={selectedArtifact}
+                    onOpenSource={openSource}
+                  />
+                ) : (
+                  <p className="muted">
+                    No verified debrief is available for this artifact yet.
+                  </p>
+                )}
+              </FeatureCard>
 
-            <Panel title="5. Science-to-Discovery Reveal + Evidence & Confidence">
-              <ScienceEvidenceSlot artifact={selectedArtifact} onOpenSource={openSource} />
-            </Panel>
+              <FeatureCard title="Time Machine — Mission History">
+                <TimeMachine artifact={selectedArtifact} sources={selectedArtifact.sources} />
+              </FeatureCard>
 
-            <Panel title="6a. Mission Debrief">
-              {quiz ? (
-                <MissionDebriefSlot
-                  quiz={quiz}
-                  artifact={selectedArtifact}
-                  onOpenSource={openSource}
-                />
-              ) : (
-                <p className="muted">
-                  No verified debrief is available for this artifact yet.
-                </p>
-              )}
-            </Panel>
+              <FeatureCard title="Artifact DNA — Hardware">
+                <ArtifactDna artifact={selectedArtifact} sources={selectedArtifact.sources} />
+              </FeatureCard>
+
+              <FeatureCard title="Evidence Detective">
+                <EvidenceDetective artifact={selectedArtifact} sources={selectedArtifact.sources} />
+              </FeatureCard>
+
+              <FeatureCard title="Digital Space Archaeologist">
+                <SpaceArchaeologist artifact={selectedArtifact} sources={selectedArtifact.sources} />
+              </FeatureCard>
+            </div>
           </>
         ) : (
           <Panel title="Artifact story">
@@ -282,8 +365,9 @@ export default function App() {
               </span>
               <h3 className="empty-state__title">Choose a verified record</h3>
               <p className="empty-state__body">
-                Open an artifact in the Atlas to load its Moon or Mars storybook,
-                timeline, science evidence and mission debrief side by side.
+                Select an artifact in the Atlas to unlock its narrated
+                storybook, mission timeline, hardware DNA, evidence detective,
+                time machine, and space archaeologist investigation.
               </p>
               <p className="muted empty-state__note">
                 Only verified records appear by default. Records under editorial
@@ -293,7 +377,7 @@ export default function App() {
           </Panel>
         )}
 
-        <Panel title="6b. Guided Story Route">
+        <Panel title="Guided Story Route">
           <GuidedRouteSlot
             routes={visibleRoutes}
             artifacts={artifacts}

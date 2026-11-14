@@ -1,0 +1,301 @@
+.evidence-detective {
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.detective-header {
+  margin-bottom: 1.25rem;
+}
+
+.detective-title {
+  font-size: 1.35rem;
+  margin-bottom: 0.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.detective-subtitle {
+  font-size: 0.9rem;
+  color: var(--theme-muted);
+  margin-bottom: 0.5rem;
+}
+
+.detective-artifact {
+  font-size: 0.85rem;
+  color: var(--theme-muted);
+}
+
+.detective-progress {
+  font-size: 0.8rem;
+  color: var(--theme-muted);
+  margin-bottom: 1rem;
+}
+
+.detective-statement {
+  padding: 1.25rem;
+  border: 1px solid var(--theme-line);
+  border-radius: 10px;
+  background: var(--theme-panel);
+  margin-bottom: 1rem;
+}
+
+.detective-question {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.detective-claim-icon {
+  font-size: 1.25rem;
+  margin-right: 0.5rem;
+}
+
+.detective-options {
+  display: grid;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.detective-option {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--theme-line);
+  border-radius: 8px;
+  background: var(--theme-bg-soft);
+  color: var(--theme-text);
+  font: inherit;
+  font-size: 0.9rem;
+  cursor: pointer;
+  text-align: left;
+  width: 100%;
+}
+
+.detective-option:hover {
+  border-color: var(--theme-accent);
+}
+
+.detective-option-label {
+  flex: 1;
+}
+
+.detective-verdict {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+}
+
+.detective-verdict--correct {
+  border: 1px solid var(--theme-success);
+  background: rgba(
+    var(--theme-success-r, 141),
+    var(--theme-success-g, 226),
+    var(--theme-success-b, 192),
+    0.12
+  );
+  color: var(--theme-success);
+}
+
+.detective-verdict--wrong {
+  border: 1px solid var(--theme-danger);
+  background: rgba(
+    var(--theme-danger-r, 255),
+    var(--theme-danger-g, 143),
+    var(--theme-danger-b, 143),
+    0.12
+  );
+  color: var(--theme-danger);
+}
+
+.detective-verdict-icon {
+  font-size: 1.5rem;
+  font-weight: 900;
+}
+
+.detective-verdict-label {
+  flex: 1;
+  font-size: 1rem;
+}
+
+.detective-verdict-status {
+  font-weight: 800;
+  font-size: 0.9rem;
+}
+
+.detective-verdict-status--wrong {
+  color: var(--theme-danger);
+}
+
+.detective-explanation {
+  margin-bottom: 1rem;
+}
+
+.detective-explanation-title {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.detective-explanation-text {
+  margin: 0;
+  line-height: 1.6;
+  color: var(--theme-text);
+}
+
+.detective-sources {
+  margin-bottom: 1rem;
+}
+
+.detective-sources-title {
+  font-size: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.detective-source-list {
+  display: grid;
+  gap: 0.65rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.detective-source-item {
+  display: flex;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  border: 1px solid var(--theme-line);
+  border-radius: 8px;
+  background: var(--theme-bg-soft);
+}
+
+.detective-source-mark {
+  color: var(--theme-accent);
+  font-weight: 900;
+}
+
+.detective-source-item > div {
+  flex: 1;
+  min-width: 0;
+}
+
+.detective-source-title {
+  font-weight: 800;
+  font-size: 0.85rem;
+}
+
+.detective-source-org {
+  font-size: 0.72rem;
+  color: var(--theme-muted);
+  display: block;
+  margin-top: 0.15rem;
+}
+
+.detective-source-link {
+  font-size: 0.75rem;
+  color: var(--theme-accent);
+  font-weight: 700;
+  margin-top: 0.4rem;
+  display: inline-block;
+}
+
+.detective-source-link:hover {
+  text-decoration: underline;
+}
+
+.detective-source-quote {
+  margin-top: 0.5rem;
+  font-size: 0.78rem;
+  font-style: italic;
+  color: var(--theme-muted);
+  border-left: 3px solid var(--theme-accent);
+  padding-left: 0.75rem;
+}
+
+.detective-source-missing {
+  font-size: 0.78rem;
+  color: var(--theme-muted);
+}
+
+.detective-sources-empty {
+  font-size: 0.85rem;
+  color: var(--theme-muted);
+  font-style: italic;
+}
+
+.detective-hint {
+  margin-bottom: 1rem;
+}
+
+.detective-hint-text {
+  margin: 0;
+  font-size: 0.82rem;
+  color: var(--theme-muted);
+  font-style: italic;
+}
+
+.detective-next {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border: 1px solid var(--theme-line);
+  border-radius: 8px;
+  background: var(--theme-bg-soft);
+  color: var(--theme-text);
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.detective-next:hover {
+  border-color: var(--theme-accent);
+}
+
+.detective-next:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.detective-disclosure {
+  margin-top: 1.25rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--theme-line);
+  border-radius: 8px;
+  background: var(--theme-panel-2);
+  font-size: 0.75rem;
+  color: var(--theme-muted);
+}
+
+.detective-disclosure-text {
+  margin: 0;
+}
+
+@media (max-width: 560px) {
+  .detective-option {
+    padding: 0.7rem 0.85rem;
+    font-size: 0.85rem;
+  }
+
+  .detective-verdict {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .detective-source-item {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .detective-option,
+  .detective-verdict,
+  .detective-next {
+    transition-duration: 0.01ms !important;
+  }
+}

@@ -1,0 +1,422 @@
+.archaeologist {
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.arch-header {
+  margin-bottom: 1.25rem;
+}
+
+.arch-title {
+  font-size: 1.35rem;
+  margin-bottom: 0.25rem;
+}
+
+.arch-subtitle {
+  font-size: 0.9rem;
+  color: var(--theme-muted);
+}
+
+.arch-progress {
+  margin-bottom: 1rem;
+}
+
+.arch-step-counter {
+  font-size: 0.8rem;
+  color: var(--theme-muted);
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.arch-step-bar {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 0.5rem;
+}
+
+.arch-step-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--theme-line);
+}
+
+.arch-step-dot--active {
+  background: var(--theme-accent);
+  transform: scale(1.3);
+}
+
+.arch-step-dot--done {
+  background: var(--theme-success);
+}
+
+.arch-step-title {
+  font-size: 1rem;
+  font-weight: 700;
+  margin: 0;
+  color: var(--theme-accent);
+}
+
+.arch-content {
+  min-height: 300px;
+}
+
+.arch-step-content {
+  border: 1px solid var(--theme-line);
+  border-radius: 10px;
+  padding: 1.5rem;
+  background: var(--theme-bg-soft);
+}
+
+.arch-content-title {
+  font-size: 1.1rem;
+  margin-bottom: 0.75rem;
+}
+
+.arch-step-body {
+  margin: 0 0 1rem;
+  line-height: 1.6;
+}
+
+.arch-step-help {
+  margin: 1rem 0 0;
+  font-size: 0.82rem;
+  color: var(--theme-muted);
+  font-style: italic;
+}
+
+.arch-image-container {
+  border: 2px solid var(--theme-line);
+  border-radius: 10px;
+  overflow: hidden;
+  background: #000;
+  margin: 1rem 0;
+}
+
+.arch-image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.arch-image-credit {
+  font-size: 0.75rem;
+  color: var(--theme-muted);
+  text-align: center;
+  margin-top: 0.5rem;
+}
+
+.arch-image-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 3rem 1rem;
+  border: 2px dashed var(--theme-line);
+  border-radius: 10px;
+  background: var(--theme-panel);
+  text-align: center;
+}
+
+.arch-image-icon {
+  font-size: 3rem;
+}
+
+.arch-identification-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.arch-ident-card {
+  padding: 1rem;
+  border: 1px solid var(--theme-line);
+  border-radius: 8px;
+  background: var(--theme-panel);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.arch-ident-icon {
+  font-size: 1.5rem;
+}
+
+.arch-ident-card h4 {
+  margin: 0;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--theme-accent);
+}
+
+.arch-ident-card p {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.arch-location-card {
+  display: flex;
+  gap: 1rem;
+  padding: 1.25rem;
+  border: 1px solid var(--theme-line);
+  border-radius: 10px;
+  background: var(--theme-panel);
+}
+
+.arch-loc-icon {
+  font-size: 2rem;
+  flex-shrink: 0;
+}
+
+.arch-location-card strong {
+  display: block;
+  font-size: 1.1rem;
+  margin-bottom: 0.25rem;
+}
+
+.arch-loc-confidence {
+  margin: 0 0 0.5rem;
+  font-size: 0.85rem;
+  color: var(--theme-accent);
+  font-weight: 700;
+}
+
+.arch-loc-explanation {
+  margin: 0 0 0.75rem;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: var(--theme-text);
+}
+
+.arch-loc-coords {
+  margin: 0;
+  font-size: 0.8rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  color: var(--theme-muted);
+}
+
+.arch-evidence-list {
+  display: grid;
+  gap: 0.75rem;
+  margin: 1rem 0;
+}
+
+.arch-evidence-item {
+  padding: 1rem;
+  border: 1px solid var(--theme-line);
+  border-radius: 8px;
+  background: var(--theme-panel);
+}
+
+.arch-evidence-item h4 {
+  margin: 0 0 0.5rem;
+  font-size: 0.95rem;
+}
+
+.arch-evidence-item p {
+  margin: 0 0 0.5rem;
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+.arch-evidence-sources {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.arch-evidence-source {
+  font-size: 0.72rem;
+  padding: 0.2rem 0.5rem;
+  border: 1px solid var(--theme-accent);
+  border-radius: 4px;
+  color: var(--theme-accent);
+  background: var(--theme-accent-soft);
+}
+
+.arch-confirm-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+@media (min-width: 640px) {
+  .arch-confirm-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.arch-confirm-card {
+  padding: 1.25rem;
+  border-radius: 10px;
+}
+
+.arch-confirm-card--confirmed {
+  border: 1px solid var(--theme-success);
+  background: rgba(
+    var(--theme-success-r, 141),
+    var(--theme-success-g, 226),
+    var(--theme-success-b, 192),
+    0.12
+  );
+}
+
+.arch-confirm-card--unknown {
+  border: 1px solid var(--theme-muted);
+  background: rgba(
+    var(--theme-muted-r, 154),
+    var(--theme-muted-g, 171),
+    var(--theme-muted-b, 199),
+    0.08
+  );
+}
+
+.arch-confirm-card h4 {
+  margin: 0 0 0.75rem;
+  font-size: 1rem;
+}
+
+.arch-confirm-card--confirmed h4 {
+  color: var(--theme-success);
+}
+
+.arch-confirm-card--unknown h4 {
+  color: var(--theme-muted);
+}
+
+.arch-confirm-list {
+  margin: 0;
+  padding-left: 1.2rem;
+  color: var(--theme-text);
+}
+
+.arch-confirm-list li {
+  margin-bottom: 0.5rem;
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+.arch-nav {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1.5rem;
+}
+
+.arch-nav-button {
+  padding: 0.7rem 1.2rem;
+  border: 1px solid var(--theme-line);
+  border-radius: 8px;
+  background: var(--theme-bg-soft);
+  color: var(--theme-text);
+  font: inherit;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.arch-nav-button:hover {
+  border-color: var(--theme-accent);
+}
+
+.arch-complete {
+  text-align: center;
+  padding: 2rem 1rem;
+}
+
+.arch-complete-badge {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.arch-complete-message {
+  font-size: 1.1rem;
+  margin-bottom: 1.5rem;
+}
+
+.arch-findings-summary {
+  text-align: left;
+  max-width: 100%;
+}
+
+.arch-findings-summary h4 {
+  margin: 0 0 1rem;
+  font-size: 1rem;
+}
+
+.arch-finding {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid var(--theme-line);
+}
+
+.arch-finding-key {
+  font-size: 0.85rem;
+  color: var(--theme-muted);
+}
+
+.arch-finding-value {
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.arch-finding-button {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border: 1px solid var(--theme-accent);
+  border-radius: 8px;
+  background: var(--theme-accent);
+  color: #06111f;
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+
+.arch-finding-button:hover {
+  filter: brightness(1.08);
+}
+
+.arch-finding-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.arch-disclosure {
+  margin-top: 1.25rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--theme-line);
+  border-radius: 8px;
+  background: var(--theme-panel-2);
+  font-size: 0.75rem;
+  color: var(--theme-muted);
+}
+
+.arch-disclosure-text {
+  margin: 0;
+}
+
+@media (max-width: 560px) {
+  .arch-identification-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .arch-location-card {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .arch-step-dot,
+  .arch-nav-button,
+  .arch-finding-button {
+    transition-duration: 0.01ms !important;
+  }
+}

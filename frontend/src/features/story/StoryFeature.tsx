@@ -1,6 +1,8 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import type { Artifact, Chapter } from '../legacyTypes';
+import type { StoryChapter } from '@echoes/shared';
 import styles from './StoryFeature.module.css';
+import { NarrationPlayer } from '../narration/NarrationPlayer';
 
 type ChapterKey = Chapter['key'];
 
@@ -42,10 +44,12 @@ export function StoryFeature({
   artifact,
   activeChapterKey,
   onOpenSources,
+  narrationChapters,
 }: {
   artifact: Artifact;
   activeChapterKey?: ChapterKey;
   onOpenSources?: () => void;
+  narrationChapters?: StoryChapter[];
 }): JSX.Element {
   const [chapterIndex, setChapterIndex] = useState(0);
   const [imageFailed, setImageFailed] = useState(false);
@@ -149,6 +153,13 @@ export function StoryFeature({
           </div>
         </div>
       </div>
+
+      {narrationChapters && narrationChapters.length > 0 && (
+        <NarrationPlayer
+          chapters={narrationChapters}
+          artifactName={artifact.name}
+        />
+      )}
 
       <div className={styles.storyHeading}>
         <div>
