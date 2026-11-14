@@ -5,7 +5,7 @@ import type {
   MissionDebriefFeatureProps,
   Quiz,
   QuizQuestion,
-} from '../../types';
+} from '../legacyTypes';
 import { readBestScore, saveBestScore } from './debriefStorage';
 import styles from './MissionDebriefFeature.module.css';
 

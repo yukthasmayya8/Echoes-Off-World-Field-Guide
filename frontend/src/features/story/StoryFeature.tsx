@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
-import type { Artifact, Chapter } from '../../types/artifact';
+import type { Artifact, Chapter } from '../legacyTypes';
 import styles from './StoryFeature.module.css';
 
 type ChapterKey = Chapter['key'];

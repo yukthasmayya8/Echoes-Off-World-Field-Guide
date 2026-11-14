@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
-import type { Artifact, Source, TimelineEvent } from '../../types';
+import type { Artifact, Source, TimelineEvent } from '../legacyTypes';
 import styles from './AfterlifeFeature.module.css';
 
 /* ------------------------------------------------------------------ */

@@ -3,8 +3,50 @@ import userEvent from '@testing-library/user-event';
 import { axe } from 'vitest-axe';
 import { describe, expect, it, vi } from 'vitest';
 import { MissionDebriefFeature } from './MissionDebriefFeature';
-import { sampleQuiz } from '../../dev/sampleQuiz';
-import type { Quiz } from '../../types';
+import type { Quiz } from '../legacyTypes';
+
+const sampleQuiz: Quiz = {
+  artifactSlug: 'sojourner',
+  artifactName: 'Sojourner',
+  questions: [
+    {
+      id: 'q1',
+      question: 'In the Mars Pathfinder mission, which object is the rover?',
+      options: ['Sojourner', 'The Mars Pathfinder lander', 'They are the same object', 'Neither of them'],
+      sourceIds: ['src-nssdca-sojourner', 'src-nssdca-pathfinder-lander'],
+      correctOptionIndex: 0,
+      explanation:
+        'Sojourner is the rover. The Mars Pathfinder lander is a separate, related record in the NSSDCA archive.',
+    },
+    {
+      id: 'q2',
+      question: 'When a mission stops communicating, what does Echoes say about the equipment?',
+      options: [
+        'It was destroyed',
+        'Its physical disposition must be checked separately; the end of communication does not mean it vanished',
+        'It returned to Earth',
+        'Nothing can be known',
+      ],
+      sourceIds: ['src-nssdca-sojourner'],
+      correctOptionIndex: 1,
+      explanation:
+        'End of communication, end of operations and physical disposition are three different things, so each one needs its own source.',
+    },
+    {
+      id: 'q3',
+      question: 'Which source does Echoes use as its primary reference for an artifact’s archival identity?',
+      options: [
+        'NASA’s National Space Science Data Center (NSSDCA)',
+        'Social media posts',
+        'Unsourced fan wikis',
+        'The team’s own estimates',
+      ],
+      sourceIds: ['src-nssdca-catalog'],
+      correctOptionIndex: 0,
+      explanation: 'The NSSDCA Master Catalog is the archival reference for identity and mission record information.',
+    },
+  ],
+};
 
 const setup = (props: Partial<Parameters<typeof MissionDebriefFeature>[0]> = {}) => {
   const onOpenSource = vi.fn();

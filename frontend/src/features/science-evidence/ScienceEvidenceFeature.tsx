@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import type { Artifact, Discovery, Source } from '../../types';
+import type { Artifact, Discovery, Source } from '../legacyTypes';
 
 export interface ScienceEvidenceFeatureProps {
   artifact: Artifact | null;
