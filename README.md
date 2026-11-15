@@ -51,8 +51,11 @@ scientific discoveries behind planetary exploration.
 
 The platform combines:
 
+- A Mission Control dashboard with daily discoveries, progress and
+  recommendations.
 - Geographical exploration through a Planetary Atlas.
 - Source-linked, five-chapter artifact storytelling.
+- Cinematic, captioned narration with selectable narration styles.
 - Interactive mission timelines.
 - Engineering and scientific discovery exploration.
 - Evidence-based investigation activities.
@@ -147,20 +150,35 @@ Echoes is organised into interconnected exploration and learning experiences.
 #### Mission Control Dashboard
 
 Provides a focused starting point for exploring the archive, discovering
-featured artifacts and navigating the field guide.
+featured artifacts and navigating the field guide. The dashboard includes:
+
+- Mission of the Day and Featured Discovery panels.
+- Continue Exploration with the last selected artifact.
+- Quick-access links to the main learning modules.
+- Recently explored artifacts.
+- A recommended route based on current progress.
+- Discovery Passport progress, saved-artifact counts and achievement badges.
 
 #### Planetary Atlas
 
 An interactive Moon and Mars location explorer featuring:
 
 - Artifact location markers.
+- NASA and USGS planetary reference basemaps for the Moon and Mars.
+- A documented schematic coordinate chart when imagery is unavailable.
 - Location confidence indicators.
 - Text-based location fallback.
 - Selected-location information panel.
+- Artifact search and filters for destination, equipment type and mission.
 - Zoom, pan and fullscreen controls.
+- Coordinate reference-frame information when it is present in the archive.
 
 Location precision is presented according to the underlying archival information
 rather than assumed accuracy.
+
+Basemap imagery is used as a visual reference only. Marker positions come from
+the verified artifact records, and each map identifies its NASA/USGS imagery
+source.
 
 #### Global Search
 
@@ -183,7 +201,7 @@ It combines:
 - Original archival wording.
 - Plain-language explanations.
 - Chapter-specific source references.
-- Browser-based narration.
+- Browser-based narration and a text-based captions alternative.
 
 #### Narration Player
 
@@ -195,7 +213,16 @@ three narration styles:
 - Scientific Deep Dive.
 
 It supports voice selection, speech-rate adjustment and sentence highlighting,
-subject to browser speech capabilities.
+subject to browser speech capabilities. The player also provides:
+
+- Documentary, Young Explorer and Scientific Deep Dive modes.
+- Current-scene display synchronized with the narrated chapter.
+- Play, pause, resume, stop and sentence-level seeking.
+- Previous- and next-chapter controls.
+- Saved narration position per artifact and narration style.
+- A graceful captions-only fallback when Web Speech is unavailable.
+- Clear disclosure that generated narration is educational text, not a
+  historical recording or synthesized astronaut/radio dialogue.
 
 #### Time Machine
 
@@ -405,7 +432,9 @@ The Express backend exposes REST endpoints for archive search, artifact
 retrieval, guided routes and quiz evaluation.
 
 Shared TypeScript contracts and Zod schemas maintain consistent data structures
-and validation across the application.
+and validation across the application. The frontend API client applies request
+timeouts, validates success envelopes, reports typed request failures and
+automatically uses the verified local archive when the API is unavailable.
 
 ### API Endpoints
 
@@ -523,6 +552,11 @@ frontend to reach the API.
 The Netlify SPA fallback is configured in `netlify.toml`:
 
 ```toml
+[[redirects]]
+  from = "/api/v1/*"
+  to = "https://echoes-off-world-field-guide.onrender.com/api/v1/:splat"
+  status = 200
+
 [[redirects]]
   from = "/*"
   to = "/index.html"
