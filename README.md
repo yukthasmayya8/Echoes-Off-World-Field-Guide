@@ -648,6 +648,8 @@ Developed by **Team Nullorbit** for the **NASA Space Apps Challenge 2026**.
 - Shravya
 - Yuktha S Mayya
 
+**AI Assistance Disclosure:** AI-assisted tools, including OpenCode, GitHub Copilot, were used during development for coding, debugging, and troubleshooting. The team reviewed and integrated the generated contributions into the project.
+
 ## 12. License and Attribution
 
 NASA data and mission information remain subject to their original source
