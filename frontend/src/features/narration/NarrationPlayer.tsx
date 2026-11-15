@@ -6,14 +6,21 @@
  * progress; mobile-compatible; no automatic audio playback; graceful fallback
  * when speech synthesis is unavailable.
  *
- * All narration text is educational narration built from reviewed project
- * content. It is clearly distinguished from authentic archive quotations
- * (shown in Scientific Deep Dive mode as original archived wording).
+ * The player keeps the current visual scene in sync with the narration
+ * sentence that is being spoken. The scene metadata comes from the shared
+ * story chapters so visuals are never detached from the narrated text.
  */
 
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import type { StoryChapter } from '@echoes/shared';
-import { buildNarration, type NarrationMode, type NarrationSentence, type NarrationState } from './narrationEngine';
+import {
+  buildNarration,
+  sceneForChapter,
+  type NarrationMode,
+  type NarrationScene,
+  type NarrationSentence,
+  type NarrationState,
+} from './narrationEngine';
 
 interface NarrationPlayerProps {
   chapters: StoryChapter[];
@@ -33,6 +40,35 @@ const MODE_DESCRIPTIONS: Record<NarrationMode, string> = {
   'scientific-deep-dive': 'Detailed engineering and science from archived records.',
 };
 
+const SPEECH_SUPPORTED =
+  typeof window !== 'undefined' && 'speechSynthesis' in window;
+
+function loadStoredIndex(artifactName: string, mode: NarrationMode): number {
+  if (typeof window === 'undefined') return 0;
+  try {
+    const raw = window.localStorage.getItem(
+      `echoes-narration-position:${artifactName}:${mode}`,
+    );
+    if (!raw) return 0;
+    const parsed = Number.parseInt(raw, 10);
+    return Number.isFinite(parsed) && parsed >= 0 ? Math.floor(parsed) : 0;
+  } catch {
+    return 0;
+  }
+}
+
+function storeIndex(artifactName: string, mode: NarrationMode, index: number): void {
+  if (typeof window === 'undefined') return;
+  try {
+    window.localStorage.setItem(
+      `echoes-narration-position:${artifactName}:${mode}`,
+      String(index),
+    );
+  } catch {
+    /* storage unavailable */
+  }
+}
+
 export function NarrationPlayer({ chapters, artifactName, mode: initialMode = 'documentary' }: NarrationPlayerProps) {
   const [mode, setMode] = useState<NarrationMode>(initialMode);
   const [rate, setRate] = useState(1);
@@ -43,10 +79,10 @@ export function NarrationPlayer({ chapters, artifactName, mode: initialMode = 'd
     playing: false,
     paused: false,
     currentSentenceIndex: 0,
-    totalSentences: sentences.length,
+    totalSentences: 0,
     mode: initialMode,
     error: null,
-    supported: typeof window !== 'undefined' && 'speechSynthesis' in window,
+    supported: SPEECH_SUPPORTED,
   });
 
   const utteranceRef = useRef<SpeechSynthesisUtterance | null>(null);
@@ -56,14 +92,27 @@ export function NarrationPlayer({ chapters, artifactName, mode: initialMode = 'd
   const [voice, setVoice] = useState<SpeechSynthesisVoice | undefined>(undefined);
   const [voices, setVoices] = useState<SpeechSynthesisVoice[]>([]);
 
-  useEffect(() => {
-    setSentences(buildNarration(chapters, mode));
-    setState((prev) => ({ ...prev, mode, currentSentenceIndex: 0, totalSentences: sentences.length }));
-    stopNarration();
-  }, [chapters, mode]);
+  const modeRef = useRef(mode);
+  modeRef.current = mode;
 
   useEffect(() => {
-    if (typeof window === 'undefined' || !('speechSynthesis' in window)) return;
+    const built = buildNarration(chapters, mode);
+    setSentences(built);
+    const startIndex = built.length > 0 ? loadStoredIndex(artifactName, mode) : 0;
+    currentIndexRef.current = Math.min(startIndex, built.length - 1);
+    setState((prev) => ({
+      ...prev,
+      mode,
+      currentSentenceIndex: currentIndexRef.current,
+      totalSentences: built.length,
+    }));
+    stopNarration();
+    // Only reset playback when the mode or artifact changes, not on re-render.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [artifactName, chapters, mode]);
+
+  useEffect(() => {
+    if (!SPEECH_SUPPORTED) return;
 
     const loadVoices = () => {
       const available = window.speechSynthesis.getVoices();
@@ -83,20 +132,20 @@ export function NarrationPlayer({ chapters, artifactName, mode: initialMode = 'd
     (text: string) => {
       if (typeof window === 'undefined' || !('speechSynthesis' in window)) return;
       window.speechSynthesis.cancel();
-      const u = new SpeechSynthesisUtterance(text);
-      u.rate = rate;
-      u.voice = voice ?? null;
-      u.onend = () => {
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.rate = rate;
+      utterance.voice = voice ?? null;
+      utterance.onend = () => {
         if (!isInterruptedRef.current) {
           advance();
         }
       };
-      u.onerror = () => {
+      utterance.onerror = () => {
         setState((prev) => ({ ...prev, error: 'Speech synthesis error.' }));
         advance();
       };
-      utteranceRef.current = u;
-      window.speechSynthesis.speak(u);
+      utteranceRef.current = utterance;
+      window.speechSynthesis.speak(utterance);
     },
     [rate, voice],
   );
@@ -104,6 +153,7 @@ export function NarrationPlayer({ chapters, artifactName, mode: initialMode = 'd
   const advance = useCallback(() => {
     currentIndexRef.current += 1;
     setState((prev: NarrationState) => ({ ...prev, currentSentenceIndex: currentIndexRef.current }));
+    storeIndex(artifactName, modeRef.current, currentIndexRef.current);
     const next = sentences[currentIndexRef.current];
     if (next) {
       speak(next.text);
@@ -111,55 +161,63 @@ export function NarrationPlayer({ chapters, artifactName, mode: initialMode = 'd
       setState((prev: NarrationState) => ({ ...prev, playing: false, paused: false }));
       utteranceRef.current = null;
     }
-  }, [sentences, speak]);
+  }, [sentences, speak, artifactName]);
 
   const startNarration = useCallback(() => {
-    if (!state.supported) {
-      setState((prev: NarrationState) => ({ ...prev, error: 'Speech synthesis is not available in this browser.' }));
+    if (typeof window === 'undefined' || !('speechSynthesis' in window)) {
+      setState((prev) => ({ ...prev, error: 'Speech synthesis is not available in this browser.' }));
       return;
     }
     isInterruptedRef.current = false;
     if (currentIndexRef.current >= sentences.length) {
       currentIndexRef.current = 0;
     }
-    setState((prev: NarrationState) => ({ ...prev, playing: true, paused: false, error: null }));
+    setState((prev) => ({ ...prev, playing: true, paused: false, error: null }));
     const current = sentences[currentIndexRef.current];
     if (current) {
       speak(current.text);
     }
-  }, [sentences, state.supported, speak]);
+  }, [sentences, speak]);
 
   const pauseNarration = useCallback(() => {
     if (typeof window === 'undefined' || !('speechSynthesis' in window)) return;
     window.speechSynthesis.pause();
-    setState((prev: NarrationState) => ({ ...prev, paused: true, playing: false }));
+    setState((prev) => ({ ...prev, paused: true, playing: false }));
   }, []);
 
   const resumeNarration = useCallback(() => {
     if (typeof window === 'undefined' || !('speechSynthesis' in window)) return;
     window.speechSynthesis.resume();
-    setState((prev: NarrationState) => ({ ...prev, paused: false, playing: true }));
+    setState((prev) => ({ ...prev, paused: false, playing: true }));
   }, []);
 
   const stopNarration = useCallback(() => {
-    if (typeof window === 'undefined' || !('speechSynthesis' in window)) return;
+    if (typeof window === 'undefined' || !('speechSynthesis' in window)) {
+      setState((prev) => ({ ...prev, playing: false, paused: false, currentSentenceIndex: 0 }));
+      return;
+    }
     isInterruptedRef.current = true;
     window.speechSynthesis.cancel();
     currentIndexRef.current = 0;
-    setState((prev: NarrationState) => ({ ...prev, playing: false, paused: false, currentSentenceIndex: 0 }));
+    setState((prev) => ({ ...prev, playing: false, paused: false, currentSentenceIndex: 0 }));
     utteranceRef.current = null;
   }, []);
 
-  const handleSkip = useCallback((index: number) => {
-    stopNarration();
-    currentIndexRef.current = index;
-    setState((prev: NarrationState) => ({ ...prev, currentSentenceIndex: index, playing: true, paused: false, error: null }));
-    const target = sentences[index];
-    if (target) {
-      speak(target.text);
-    }
-  }, [sentences, stopNarration, speak]);
+  const handleSkip = useCallback(
+    (index: number) => {
+      stopNarration();
+      currentIndexRef.current = index;
+      setState((prev) => ({ ...prev, currentSentenceIndex: index, playing: true, paused: false, error: null }));
+      storeIndex(artifactName, modeRef.current, index);
+      const target = sentences[index];
+      if (target) {
+        speak(target.text);
+      }
+    },
+    [sentences, stopNarration, speak, artifactName],
+  );
 
+  // Cancel speech when the player unmounts.
   useEffect(() => {
     return () => {
       if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
@@ -169,9 +227,43 @@ export function NarrationPlayer({ chapters, artifactName, mode: initialMode = 'd
   }, []);
 
   const currentSentence = sentences[currentIndexRef.current];
-  const progress = sentences.length ? (currentIndexRef.current / sentences.length) * 100 : 0;
+  const currentScene: NarrationScene | null = currentSentence
+    ? sceneForChapter(chapters.find((chapter) => chapter.number === currentSentence.chapterNumber))
+    : null;
 
+  const progress = sentences.length ? (currentIndexRef.current / sentences.length) * 100 : 0;
   const progressPercent = Math.min(100, Math.max(0, progress));
+
+  const chapterStarts = useMemo(() => {
+    const starts: Array<{ chapterNumber: number; firstIndex: number }> = [];
+    const seen = new Set<number>();
+    for (let index = 0; index < sentences.length; index += 1) {
+      const sentence = sentences[index];
+      if (sentence && !seen.has(sentence.chapterNumber)) {
+        seen.add(sentence.chapterNumber);
+        starts.push({ chapterNumber: sentence.chapterNumber, firstIndex: index });
+      }
+    }
+    return starts;
+  }, [sentences]);
+
+  const currentChapterPosition =
+    chapterStarts.findIndex((entry) => entry.chapterNumber === currentSentence?.chapterNumber);
+  const hasPreviousChapter = currentChapterPosition > 0;
+  const hasNextChapter = currentChapterPosition >= 0 && currentChapterPosition < chapterStarts.length - 1;
+
+  const goToPreviousChapter = useCallback(() => {
+    if (currentChapterPosition <= 0) return;
+    handleSkip(chapterStarts[currentChapterPosition - 1].firstIndex);
+  }, [chapterStarts, currentChapterPosition, handleSkip]);
+
+  const goToNextChapter = useCallback(() => {
+    if (currentChapterPosition < 0 || currentChapterPosition >= chapterStarts.length - 1) return;
+    handleSkip(chapterStarts[currentChapterPosition + 1].firstIndex);
+  }, [chapterStarts, currentChapterPosition, handleSkip]);
+
+  const currentTranscriptIndex = sentences.findIndex((s) => s.id === currentSentence?.id);
+  const transcriptKey = sentences.map((s) => s.id).join('|');
 
   return (
     <section className="narration-player" aria-label="Story narration">
@@ -195,11 +287,21 @@ export function NarrationPlayer({ chapters, artifactName, mode: initialMode = 'd
         </div>
       )}
 
+      <div className="narration-scene" data-scene={currentScene?.id}>
+        {currentScene ? (
+          <>
+            <p className="narration-scene__eyebrow">CURRENT SCENE</p>
+            <h3 className="narration-scene__title">{currentScene.title}</h3>
+            <p className="narration-scene__caption">{currentScene.caption}</p>
+          </>
+        ) : null}
+      </div>
+
       <div className="narration-controls">
         <select
           className="narration-select"
           value={mode}
-          onChange={(e) => setMode(e.target as unknown as NarrationMode)}
+          onChange={(e) => setMode(e.target.value as NarrationMode)}
           aria-label="Narration style"
         >
           {Object.entries(MODE_LABELS).map(([key, label]) => (
@@ -259,6 +361,25 @@ export function NarrationPlayer({ chapters, artifactName, mode: initialMode = 'd
         </label>
       </div>
 
+      <div className="narration-chapters" role="group" aria-label="Narration chapters">
+        <button
+          type="button"
+          className="narration-button narration-button--ghost"
+          onClick={goToPreviousChapter}
+          disabled={!hasPreviousChapter}
+        >
+          ← Previous chapter
+        </button>
+        <button
+          type="button"
+          className="narration-button narration-button--ghost"
+          onClick={goToNextChapter}
+          disabled={!hasNextChapter}
+        >
+          Next chapter →
+        </button>
+      </div>
+
       <div className="narration-progress">
         <div className="narration-progress-label">
           <span>Narration progress</span>
@@ -279,35 +400,31 @@ export function NarrationPlayer({ chapters, artifactName, mode: initialMode = 'd
         {sentences.map((sentence, index) => {
           const isCurrent = index === currentIndexRef.current;
           const isArchive = sentence.isArchiveQuote;
+          const key = sentence.id;
           return (
             <div
-              key={sentence.id}
+              key={key}
               className={`narration-sentence ${
                 isCurrent ? 'narration-sentence--current' : ''
               } ${isArchive ? 'narration-sentence--archive' : ''}`}
-              role={isCurrent ? 'heading' : undefined}
-              aria-level={isCurrent ? 3 : undefined}
-              aria-live="off"
             >
               <span className="narration-sentence-number">{index + 1}</span>
-              <span className="narration-sentence-text">{sentence.text}</span>
-              {isArchive && (
-                <span className="narration-archive-tag">Archived record wording</span>
-              )}
-              {!isCurrent && sentence.sourceRef && isArchive ? (
-                <button
-                  type="button"
-                  className="narration-jump-button"
-                  onClick={() => handleSkip(index)}
-                  aria-label={`Jump to sentence ${index + 1}: ${sentence.text.slice(0, 40)}`}
-                >
-                  Read this part
-                </button>
-              ) : null}
+              <button
+                type="button"
+                className="narration-sentence-button"
+                onClick={() => handleSkip(index)}
+                aria-label={`Jump to sentence ${index + 1}: ${sentence.text.slice(0, 60)}`}
+              >
+                <span className="narration-sentence-text">{sentence.text}</span>
+                {isArchive && (
+                  <span className="narration-archive-tag">Archived record wording</span>
+                )}
+              </button>
             </div>
           );
         })}
       </div>
+      <span hidden>{transcriptKey}</span>
 
       <div className="narration-disclosure">
         <p className="narration-disclosure-text">

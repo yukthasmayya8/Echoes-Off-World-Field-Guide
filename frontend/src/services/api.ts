@@ -75,7 +75,21 @@ type QueryValue = string | number | boolean | undefined;
 
 function readBaseUrl(): string {
   const value = import.meta.env.VITE_API_BASE_URL;
-  return value && value.trim().length > 0 ? value.trim() : DEFAULT_API_BASE_URL;
+  if (value && value.trim().length > 0) {
+    return value.trim().replace(/\/+$/, '');
+  }
+  // No build-time configuration: use a same-origin API base when the app is
+  // served from a non-local origin (static hosts that proxy /api), and the
+  // local Express server during development.
+  const configuredOrigin = browserOrigin();
+  const isLocalHost =
+    typeof window !== 'undefined' &&
+    (window.location.hostname === 'localhost' ||
+      window.location.hostname === '127.0.0.1');
+  if (!isLocalHost) {
+    return '/api/v1';
+  }
+  return DEFAULT_API_BASE_URL;
 }
 
 function readTimeoutMs(): number {

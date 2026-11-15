@@ -9,6 +9,13 @@
   # Base URL of the deployed Echoes backend, including the /api/v1 prefix.
   VITE_API_BASE_URL = "https://echoes-off-world-field-guide.onrender.com/api/v1"
 
+# API proxy: registered before the SPA fallback so /api/v1/* is forwarded to
+# the deployed Express backend instead of being rewritten to index.html.
+[[redirects]]
+  from = "/api/v1/*"
+  to = "https://echoes-off-world-field-guide.onrender.com/api/v1/:splat"
+  status = 200
+
 [[redirects]]
   from = "/*"
   to = "/index.html"

@@ -1,6 +1,26 @@
 import { useMemo, useRef, useState, type PointerEvent as ReactPointerEvent } from "react";
 import "./AtlasFeature.css";
 
+/**
+ * Real planetary basemap imagery used by the Atlas maps. Imagery is loaded
+ * from public USGS Astrogeology / NASA LROC distribution channels and is
+ * treated as a reference view only — marker positions come exclusively from the
+ * coordinates recorded in the verified artifact sources. If imagery cannot be
+ * loaded the map degrades gracefully to the documented schematic chart.
+ */
+const PLANETARY_BASEMAPS = {
+  moon: {
+    url: "https://astrogeology.usgs.gov/ckan/dataset/db948a2d-4d6a-4775-a0d3-12613d36f9e7/resource/9c0ea819-5bbd-464d-b402-bf36621c7bdb/download/moon_lro_lroc-wac_mosaic_global_100.jpg",
+    credit: "NASA LRO Lunar Reconnaissance Orbiter Camera (LROC) Wide Area Camera global morphology mosaic, distributed through the NASA LROC project and the USGS Astrogeology Science Center.",
+    attributionUrl: "https://astrogeology.usgs.gov/search/map/moon_lro_lroc_wac_global_morphology_mosaic_100m",
+  },
+  mars: {
+    url: "https://astrogeology.usgs.gov/ckan/dataset/bebeb980-bac1-485c-931b-123c3d1fc3a4/resource/2ba0c4ea-6b3f-49fa-b41f-7beb03141f3f/download/mars_mo_themis-ir-day_mosaic_global_100.jpg",
+    credit: "NASA / USGS Astrogeology Mars Odyssey Thermal Emission Imaging Spectrometer (THEMIS) IR day global mosaic, distributed through the NASA Planetary Data System and the USGS Astrogeology Science Center.",
+    attributionUrl: "https://astrogeology.usgs.gov/search/map/mars_odyssey_themis_ir_day_global_mosaic_100m_v12",
+  },
+} as const;
+
 export interface ArtifactSummary {
   id: string;
   name: string;
@@ -26,7 +46,7 @@ export interface ArtifactSummary {
 export interface ArtifactMapLocation {
   label: string;
   confidence?: string;
-  coordinates?: { lat: number; lon: number };
+  coordinates?: { lat: number; lon: number; referenceFrame?: string };
 }
 
 type AtlasView = "story" | "timeline" | "science" | "evidence";
@@ -85,11 +105,13 @@ function BodyMap({
   const [pan, setPan] = useState({ x: 0, y: 0 });
   const [dragging, setDragging] = useState(false);
   const [expanded, setExpanded] = useState(false);
+  const [basemapFailed, setBasemapFailed] = useState(false);
   const dragStart = useRef<{ x: number; y: number; panX: number; panY: number } | null>(null);
 
   const located = items.filter((item) => item.location?.coordinates);
   const unmapped = items.filter((item) => !item.location?.coordinates);
   if (located.length === 0 && unmapped.length === 0) return null;
+  const basemap = body === "Moon" ? PLANETARY_BASEMAPS.moon : PLANETARY_BASEMAPS.mars;
 
   const listItems = [...located, ...unmapped];
   const selected = items.find((item) => item.id === selectedArtifactId);
@@ -111,6 +133,7 @@ function BodyMap({
   const reset = () => {
     setZoom(1);
     setPan({ x: 0, y: 0 });
+    setBasemapFailed(false);
   };
 
   const onPointerDown = (event: ReactPointerEvent<HTMLDivElement>) => {
@@ -219,6 +242,16 @@ function BodyMap({
               transform: `translate(${pan.x}px, ${pan.y}px) scale(${zoom})`,
             }}
           >
+            {basemap && !basemapFailed ? (
+              <img
+                className="atlas-basemap"
+                src={basemap.url}
+                alt=""
+                aria-hidden="true"
+                draggable={false}
+                onError={() => setBasemapFailed(true)}
+              />
+            ) : null}
             <svg
               viewBox="0 0 360 180"
               role="img"
@@ -358,6 +391,19 @@ function BodyMap({
         coordinates appear in the list only. This is a documented coordinate
         chart, not a live NASA imagery layer.
       </p>
+      {basemapFailed ? (
+        <p className="atlas-map__note">
+          The planetary basemap image could not be loaded, so the documented
+          schematic coordinate chart is shown instead.
+        </p>
+      ) : (
+        <p className="atlas-map__note">
+          Basemap: {basemap.credit}{" "}
+          <a href={basemap.attributionUrl} target="_blank" rel="noreferrer noopener">
+            Source ↗
+          </a>
+        </p>
+      )}
 
       {selected && (
         <article
@@ -390,6 +436,11 @@ function BodyMap({
                   ? `${selected.location.coordinates.lat}°, ${selected.location.coordinates.lon}° (as recorded)`
                   : "No coordinates in the source record"}
               </dd>
+              {selected.location?.coordinates?.referenceFrame && (
+                <dd className="atlas-location-panel__frame">
+                  Coordinate reference frame: {selected.location.coordinates.referenceFrame}
+                </dd>
+              )}
             </div>
             <div>
               <dt>Equipment</dt>
@@ -438,9 +489,18 @@ export default function AtlasFeature({
   const [search, setSearch] = useState("");
   const [destination, setDestination] = useState("All");
   const [type, setType] = useState("All");
+  const [mission, setMission] = useState("All");
 
   const types = useMemo(
     () => [...new Set(records.map((item) => item.type))],
+    [records],
+  );
+
+  const missions = useMemo(
+    () =>
+      [...new Set(records.map((item) => item.mission.name))].sort((a, b) =>
+        a.localeCompare(b),
+      ),
     [records],
   );
 
@@ -457,8 +517,10 @@ export default function AtlasFeature({
       destination === "All" || item.body === destination;
 
     const matchesType = type === "All" || item.type === type;
+    const matchesMission =
+      mission === "All" || item.mission.name === mission;
 
-    return matchesSearch && matchesDestination && matchesType;
+    return matchesSearch && matchesDestination && matchesType && matchesMission;
   });
 
   const selected = records.find((item) => item.id === selectedArtifactId);
@@ -506,11 +568,25 @@ export default function AtlasFeature({
           ))}
         </select>
 
+        <select
+          value={mission}
+          onChange={(e) => setMission(e.target.value)}
+          aria-label="Filter by mission"
+        >
+          <option value="All">All missions</option>
+          {missions.map((item) => (
+            <option key={item} value={item}>
+              {item}
+            </option>
+          ))}
+        </select>
+
         <button
           onClick={() => {
             setSearch("");
             setDestination("All");
             setType("All");
+            setMission("All");
           }}
         >
           Reset filters

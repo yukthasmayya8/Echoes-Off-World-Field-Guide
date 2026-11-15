@@ -3,8 +3,9 @@
  * Mars immediately reachable instead of asking visitors to scroll a document.
  */
 
+import { useMemo } from 'react';
 import type { Artifact, CatalogEntry, GuidedRoute } from '@echoes/shared';
-import type { PassportState } from '../../app/progress';
+import { buildBadges, type PassportState } from '../../app/progress';
 import type { ViewId } from '../../app/navigation';
 
 interface DashboardProps {
@@ -55,9 +56,36 @@ export function Dashboard({
     ? artifacts[dayOfYear(new Date()) % artifacts.length]
     : null;
   const featureRoute = routes[0] ?? null;
+  const badges = useMemo(() => buildBadges(passport), [passport]);
+  const earnedBadges = badges.filter((badge) => badge.earned);
   const exploredPercent = artifacts.length
     ? Math.round((passport.explored.length / artifacts.length) * 100)
     : 0;
+
+  const dailyDiscovery = daily?.discoveries[0] ?? null;
+  const dailySource = daily?.sources[0] ?? null;
+  const dailyQuestion = dailyDiscovery
+    ? `What did the ${dailyDiscovery.hardware} observe, and what did the scientists conclude from it?`
+    : null;
+
+  const featuredDiscovery = featured?.discoveries[0] ?? null;
+
+  const recentlyExplored = passport.explored
+    .map((slug) => artifacts.find((artifact) => artifact.slug === slug))
+    .filter((artifact): artifact is Artifact => Boolean(artifact));
+
+  const recommendedRoute =
+    (passport.lastSlug && routes.find((route) => route.steps.some((step) => step.artifactSlug === passport.lastSlug))) ??
+    featureRoute;
+
+  const quickAccess: Array<{ view: ViewId; icon: string; label: string; body: string }> = [
+    { view: 'atlas', icon: '◎', label: 'Planetary Atlas', body: 'Find the landing site' },
+    { view: 'story', icon: '▤', label: 'Storybook', body: 'Follow five chapters' },
+    { view: 'timeline', icon: '◷', label: 'Time Machine', body: 'Walk the timeline' },
+    { view: 'science', icon: '✦', label: 'Science Reveal', body: 'Hardware to discovery' },
+    { view: 'evidence', icon: '⌖', label: 'Evidence Detective', body: 'Test a claim' },
+    { view: 'passport', icon: '✧', label: 'Discovery Passport', body: 'Track progress' },
+  ];
 
   return (
     <div className="dashboard">
@@ -158,7 +186,7 @@ export function Dashboard({
 
       <div className="dashboard-grid">
         <section className="dashboard-panel dashboard-panel--feature">
-          <p className="eyebrow">DISCOVERY OF THE DAY</p>
+          <p className="eyebrow">MISSION OF THE DAY</p>
           {daily ? (
             <>
               <div className="daily-image">
@@ -172,7 +200,20 @@ export function Dashboard({
               <p className="daily-meta">
                 {daily.body === 'moon' ? 'Moon' : 'Mars'} · {daily.missionName}
               </p>
-              <p>{daily.summary}</p>
+              {dailyDiscovery ? (
+                <p className="daily-fact">
+                  <strong>Scientific fact:</strong> {dailyDiscovery.simpleExplanation}
+                </p>
+              ) : (
+                <p>{daily.summary}</p>
+              )}
+              {dailyQuestion ? <p className="daily-question">{dailyQuestion}</p> : null}
+              {dailySource ? (
+                <p className="daily-source">
+                  Source: <a href={dailySource.url} target="_blank" rel="noreferrer noopener">{dailySource.title}</a>{' '}
+                  · checked {dailySource.accessedOn}
+                </p>
+              ) : null}
               <div className="dashboard-panel__actions">
                 <button type="button" className="button" onClick={() => onSelectArtifact(daily.slug)}>
                   Investigate
@@ -188,30 +229,25 @@ export function Dashboard({
         </section>
 
         <section className="dashboard-panel">
-          <p className="eyebrow">FEATURED ROUTE</p>
-          {featureRoute ? (
+          <p className="eyebrow">FEATURED DISCOVERY</p>
+          {featured && featuredDiscovery ? (
             <>
-              <h2>{featureRoute.title}</h2>
-              <p>{featureRoute.description}</p>
-              <ul className="route-preview">
-                {featureRoute.steps.map((step) => (
-                  <li key={step.id}>
-                    <span className="route-preview__order">{step.order}</span>
-                    <span>
-                      <strong>{step.title}</strong>
-                      <small>{step.focus}</small>
-                    </span>
-                  </li>
-                ))}
-              </ul>
+              <h2>{featuredDiscovery.hardware}</h2>
+              <p className="daily-meta">
+                {featured.name} · {featured.missionName}
+              </p>
+              <p>{featuredDiscovery.simpleExplanation}</p>
               <div className="dashboard-panel__actions">
-                <button type="button" className="button" onClick={() => onNavigate('routes')}>
-                  Start route
+                <button type="button" className="button" onClick={() => onSelectArtifact(featured.slug)}>
+                  Open the science
+                </button>
+                <button type="button" className="button button--ghost" onClick={() => onNavigate('dna')}>
+                  Inspect hardware
                 </button>
               </div>
             </>
           ) : (
-            <p>No curated routes are available.</p>
+            <p>No discovery is linked to the featured artifact yet.</p>
           )}
         </section>
 
@@ -256,6 +292,82 @@ export function Dashboard({
           </div>
         </section>
       </div>
+
+      <section className="dashboard-grid dashboard-grid--quick" aria-label="Quick access modules">
+        {quickAccess.map((item) => (
+          <button
+            key={item.view}
+            type="button"
+            className="module-card module-card--quick"
+            onClick={() => onNavigate(item.view)}
+          >
+            <span className="module-card__icon" aria-hidden="true">{item.icon}</span>
+            <span className="module-card__title">{item.label}</span>
+            <span className="module-card__body">{item.body}</span>
+          </button>
+        ))}
+      </section>
+
+      <section className="dashboard-grid">
+        <section className="dashboard-panel">
+          <p className="eyebrow">RECENTLY EXPLORED</p>
+          {recentlyExplored.length > 0 ? (
+            <ul className="passport-mini passport-mini--list">
+              {recentlyExplored.map((artifact) => (
+                <li key={artifact.slug}>
+                  <button type="button" onClick={() => onSelectArtifact(artifact.slug)}>
+                    {artifact.body === 'moon' ? '☾' : '♂'} {artifact.name}
+                  </button>
+                  <small>{artifact.missionName}</small>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p className="dashboard-muted">Nothing explored yet this browser. Pick a Moon or Mars record to begin.</p>
+          )}
+        </section>
+
+        <section className="dashboard-panel">
+          <p className="eyebrow">RECOMMENDED ROUTE</p>
+          {recommendedRoute ? (
+            <>
+              <h2>{recommendedRoute.title}</h2>
+              <p>{recommendedRoute.description}</p>
+              <ul className="route-preview">
+                {recommendedRoute.steps.map((step) => (
+                  <li key={step.id}>
+                    <span className="route-preview__order">{step.order}</span>
+                    <span>
+                      <strong>{step.title}</strong>
+                      <small>{step.focus}</small>
+                    </span>
+                  </li>
+                ))}
+              </ul>
+              <div className="dashboard-panel__actions">
+                <button type="button" className="button" onClick={() => onNavigate('routes')}>
+                  Start route
+                </button>
+              </div>
+            </>
+          ) : (
+            <p>No curated route is available yet.</p>
+          )}
+        </section>
+
+        <section className="dashboard-panel">
+          <p className="eyebrow">ACHIEVEMENTS</p>
+          <h2>{earnedBadges.length} of {badges.length} badges earned</h2>
+          <ul className="passport-mini passport-mini--badges">
+            {badges.map((badge) => (
+              <li key={badge.id} className={badge.earned ? 'achievement achievement--earned' : 'achievement achievement--locked'}>
+                <strong>{badge.label}</strong>
+                <small>{badge.description}</small>
+              </li>
+            ))}
+          </ul>
+        </section>
+      </section>
 
       <section className="module-section" aria-label="All modules">
         <div className="module-section__head">

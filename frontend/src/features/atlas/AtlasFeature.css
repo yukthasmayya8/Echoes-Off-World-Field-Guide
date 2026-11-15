@@ -52,7 +52,7 @@
 
 .atlas-controls {
   display: grid;
-  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr) minmax(0, 1fr) auto;
+  grid-template-columns: minmax(0, 2fr) repeat(3, minmax(0, 1fr)) auto;
   gap: 12px;
   padding: 16px;
   border: 1px solid var(--atlas-line);
@@ -60,6 +60,20 @@
   background:
     linear-gradient(135deg, var(--atlas-panel-2), var(--atlas-panel));
   box-shadow: 0 18px 40px rgba(0, 0, 0, 0.22);
+}
+
+.atlas-controls .atlas-field--wide {
+  grid-column: span 2;
+}
+
+@media (max-width: 900px) {
+  .atlas-controls {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .atlas-controls .atlas-field--wide {
+    grid-column: span 2;
+  }
 }
 
 .atlas input,
@@ -90,6 +104,12 @@
 .atlas-controls > button:hover {
   background: var(--atlas-accent);
   color: #08111d;
+}
+
+@media (max-width: 520px) {
+  .atlas-controls {
+    grid-template-columns: minmax(0, 1fr);
+  }
 }
 
 .atlas-count {
@@ -245,6 +265,15 @@
   display: block;
   width: 100%;
   height: auto;
+  pointer-events: none;
+}
+
+.atlas-basemap {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
   pointer-events: none;
 }
 
@@ -467,6 +496,11 @@
   margin: 4px 0 0;
   font-size: 0.88rem;
   line-height: 1.45;
+}
+
+.atlas-location-panel__frame {
+  color: var(--atlas-muted);
+  font-size: 0.78rem;
 }
 
 .atlas-location-panel__description {
