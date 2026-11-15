@@ -513,8 +513,11 @@ The production build reads `VITE_API_BASE_URL` at build time, so the deployed
 backend base URL (including the `/api/v1` prefix) must be set for the live
 frontend to reach the API:
 
-- Set `VITE_API_BASE_URL` under `[context.production.environment]` in
-  `netlify.toml`, or through the Netlify UI environment variables.
+- Set `VITE_API_BASE_URL` through the Netlify UI environment variables (or
+  `[context.production.environment]` in `netlify.toml`) when a live backend is
+  deployed. Without it, the production build uses the local default
+  (`http://localhost:4000/api/v1`), and when the API cannot be reached the app
+  automatically falls back to the verified local archive dataset.
 
 The Netlify SPA fallback is configured in `netlify.toml`:
 
