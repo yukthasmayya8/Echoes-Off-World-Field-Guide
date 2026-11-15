@@ -340,6 +340,28 @@ curated archive.
 The interface visibly identifies this fallback experience as **DEMO MODE**,
 distinguishing it from the API-backed experience.
 
+### Implemented feature integrations
+
+The feature integration layer is implemented and wired into the React
+application. The registry discovers the following production components:
+
+| Integration | Implementation |
+| --- | --- |
+| NSSDCA Archive Atlas | `frontend/src/features/atlas/AtlasFeature.tsx` |
+| Moon Artifact Storybook | `frontend/src/features/story/StoryFeature.tsx` |
+| Mars Artifact Storybook | `frontend/src/features/story/StoryFeature.tsx` |
+| Mission Timeline & Afterlife | `frontend/src/features/afterlife/AfterlifeFeature.tsx` |
+| Science-to-Discovery Reveal and Evidence | `frontend/src/features/science-evidence/ScienceEvidenceFeature.tsx` |
+| Mission Debrief | `frontend/src/features/science-evidence/MissionDebriefFeature.tsx` |
+| Guided Story Route | `frontend/src/features/guided-route/GuidedRouteFeature.tsx` |
+
+These are not placeholder interfaces. Each registration is loaded through the
+typed feature registry, receives shared archive data from the parent
+application and has integration coverage that mounts the real component and
+verifies its user-facing output. The registry's fallback components are
+development-safe error states only; they are not the normal application
+experience.
+
 ## 6. Evidence, Data Integrity and Scientific Responsibility
 
 Accuracy is a core design principle of Echoes.
@@ -525,6 +547,10 @@ npm run build
 npm start
 node scripts/smoke.mjs
 ```
+
+The frontend build and integration tests cover the implemented feature
+registrations, including both Storybook variants. Run `npm run build` and
+`npm test` from the repository root to verify the current application.
 
 ### Production deployment on Netlify
 
