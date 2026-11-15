@@ -5,6 +5,10 @@
 [build.environment]
   NODE_VERSION = "20"
 
+[context.production.environment]
+  # Base URL of the deployed Echoes backend, including the /api/v1 prefix.
+  VITE_API_BASE_URL = "https://echoes-off-world-field-guide.onrender.com/api/v1"
+
 [[redirects]]
   from = "/*"
   to = "/index.html"

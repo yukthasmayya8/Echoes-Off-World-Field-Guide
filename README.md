@@ -511,13 +511,14 @@ build:
 
 The production build reads `VITE_API_BASE_URL` at build time, so the deployed
 backend base URL (including the `/api/v1` prefix) must be set for the live
-frontend to reach the API:
+frontend to reach the API.
 
-- Set `VITE_API_BASE_URL` through the Netlify UI environment variables (or
-  `[context.production.environment]` in `netlify.toml`) when a live backend is
-  deployed. Without it, the production build uses the local default
-  (`http://localhost:4000/api/v1`), and when the API cannot be reached the app
-  automatically falls back to the verified local archive dataset.
+- `netlify.toml` sets
+  `[context.production.environment] VITE_API_BASE_URL = "https://echoes-off-world-field-guide.onrender.com/api/v1"`
+  for the production build.
+- If no live backend is deployed, the production build falls back to the local
+  default (`http://localhost:4000/api/v1`) and the app automatically uses the
+  verified local archive dataset when the API cannot be reached.
 
 The Netlify SPA fallback is configured in `netlify.toml`:
 
