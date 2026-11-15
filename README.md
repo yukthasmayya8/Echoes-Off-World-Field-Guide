@@ -497,6 +497,42 @@ npm start
 node scripts/smoke.mjs
 ```
 
+### Production deployment on Netlify
+
+The production frontend is hosted at
+[Explore Echoes- Live Application](https://echoes-off-world-field-guide.netlify.app/).
+
+The repository root contains a `netlify.toml` that configures the production
+build:
+
+- Build command: `npm run build`
+- Publish directory: `frontend/dist`
+- Node version: `20`
+
+The production build reads `VITE_API_BASE_URL` at build time, so the deployed
+backend base URL (including the `/api/v1` prefix) must be set for the live
+frontend to reach the API:
+
+- Set `VITE_API_BASE_URL` under `[context.production.environment]` in
+  `netlify.toml`, or through the Netlify UI environment variables.
+
+The Netlify SPA fallback is configured in `netlify.toml`:
+
+```toml
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+```
+
+The backend must allow the deployed frontend origin through CORS by setting
+`CORS_ORIGIN` on the backend host:
+
+- Local development: `CORS_ORIGIN=http://localhost:5173`
+- Production: `CORS_ORIGIN=https://echoes-off-world-field-guide.netlify.app`
+
+See `backend/.env.example` for the backend environment template.
+
 ## 9. Project Scope and Current Limitations
 
 Echoes is a working prototype with an intentionally bounded archive.
