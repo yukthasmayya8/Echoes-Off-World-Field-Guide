@@ -160,9 +160,7 @@ function DebriefSession({
           Mission debrief{quiz.artifactName ? `: ${quiz.artifactName}` : ''}
         </h2>
         {isDemoMode && (
-          <p className={styles.demo}>
-            DEMO MODE – using local fallback data, not the live backend.
-          </p>
+          <p className={styles.demo}>Working from the verified local archive dataset.</p>
         )}
       </header>
 

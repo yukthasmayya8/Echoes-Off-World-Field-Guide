@@ -250,9 +250,9 @@ export function MissionDebriefFallback({ quiz }: MissionDebriefFeatureProps) {
         ))}
       </ul>
       <p className="feature-placeholder__note">
-        Submission is wired through <code>submitQuizAnswer</code>. In DEMO MODE it
-        is evaluated locally and labelled as local; the placeholder does not render
-        the final debrief interface.
+        Submission is wired through <code>submitQuizAnswer</code>. When the
+        local archive fallback answers, the result is labelled as local; the
+        placeholder does not render the final debrief interface.
       </p>
     </PlaceholderShell>
   );

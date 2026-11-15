@@ -11,7 +11,7 @@ import {
   searchLocalCatalog,
 } from './localFallback';
 
-describe('local DEMO MODE fallback', () => {
+describe('local archive fallback', () => {
   it('reports only verified artifacts', () => {
     expect(localFallbackInfo()).toMatchObject({
       demo: true,

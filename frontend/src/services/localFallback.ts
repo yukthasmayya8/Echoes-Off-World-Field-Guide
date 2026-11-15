@@ -3,7 +3,7 @@
  *
  * This is a real fallback, not a mock: it loads the same verified JSON files
  * that the backend serves. needs_review records are filtered out at every
- * entry point, and the caller is told that the data came from DEMO MODE.
+ * entry point, and the caller is told that the data came from the local archive.
  */
 import {
   availableBodies,

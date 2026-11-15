@@ -70,9 +70,9 @@ describe('MissionDebriefFeature – states', () => {
     setup({ errorMessage: 'Could not load.' });
     expect(screen.getByRole('alert')).toHaveTextContent('Could not load.');
   });
-  it('shows the DEMO MODE indicator in text', () => {
+  it('shows the local archive indicator in text when working from the fallback', () => {
     setup({ isDemoMode: true });
-    expect(screen.getByText(/DEMO MODE/)).toBeInTheDocument();
+    expect(screen.getByText(/verified local archive/i)).toBeInTheDocument();
   });
 });
 

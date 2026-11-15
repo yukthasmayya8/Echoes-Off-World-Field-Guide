@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import { DEMO_MODE_LABEL, type Artifact, type Body } from '@echoes/shared';
+import { ARCHIVE_DATA_LABEL, type Artifact, type Body } from '@echoes/shared';
 import {
   AfterlifeSlot,
   AtlasSlot,
@@ -562,7 +562,7 @@ export default function App() {
                 sourceMode === 'demo' ? 'badge--demo' : 'badge--live'
               }`}
             >
-              {sourceMode === 'demo' ? DEMO_MODE_LABEL : 'LIVE API'}
+              {sourceMode === 'demo' ? ARCHIVE_DATA_LABEL : 'LIVE API'}
             </span>
             <span className="badge">{artifacts.length} records</span>
           </div>
@@ -651,14 +651,12 @@ export default function App() {
         ) : null}
 
         {sourceMode === 'demo' ? (
-          <div className="demo-banner" role="status">
-            <strong>{DEMO_MODE_LABEL}</strong>
+          <div className="archive-note" role="status">
             <span>
-              {demoNotice ??
-                'The live API is unavailable. Showing the verified local JSON dataset only.'}
+              {demoNotice ?? 'Using the verified local archive while the live connection is unavailable.'}
             </span>
-            <button type="button" className="button button--small" onClick={retry}>
-              Retry live API
+            <button type="button" className="button button--small button--ghost" onClick={retry}>
+              Retry connection
             </button>
           </div>
         ) : null}

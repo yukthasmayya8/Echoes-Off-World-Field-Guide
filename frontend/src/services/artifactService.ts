@@ -52,8 +52,8 @@ export class ArtifactService {
   ): Sourced<T> {
     if (error instanceof ApiRequestError && error.isUnavailable) {
       const notice =
-        `The live API could not be reached while loading ${operation}. ` +
-        'DEMO MODE is using the verified local JSON dataset; needs_review records remain hidden.';
+        `Using the verified local archive while the live connection is unavailable (${operation}). ` +
+        'All shown records are verified; records under editorial review stay hidden.';
       this.source = 'demo';
       return { data: loadLocal(), source: 'demo', notice };
     }

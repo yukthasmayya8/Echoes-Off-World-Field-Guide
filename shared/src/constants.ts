@@ -72,4 +72,4 @@ export const DATA_FILES = {
   quizzes: 'quizzes.json',
 } as const;
 
-export const DEMO_MODE_LABEL = 'DEMO MODE';
+export const ARCHIVE_DATA_LABEL = 'Archive data';

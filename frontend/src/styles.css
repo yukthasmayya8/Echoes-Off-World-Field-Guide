@@ -109,9 +109,9 @@ blockquote {
 }
 
 .badge--demo {
-  border-color: rgba(245, 193, 108, 0.65);
-  background: rgba(245, 193, 108, 0.14);
-  color: var(--warn);
+  border-color: var(--theme-line, #263450);
+  background: rgba(154, 171, 199, 0.12);
+  color: var(--theme-muted, #9aabc7);
 }
 
 .badge--pending {
@@ -124,6 +124,7 @@ blockquote {
   color: var(--danger);
 }
 
+.archive-note,
 .demo-banner,
 .error-banner {
   display: flex;
@@ -132,19 +133,21 @@ blockquote {
   align-items: center;
   justify-content: space-between;
   margin-top: 18px;
-  padding: 14px 18px;
+  padding: 10px 14px;
   border-radius: var(--radius);
-  border: 1px solid rgba(245, 193, 108, 0.5);
-  background: rgba(245, 193, 108, 0.1);
-  color: var(--warn);
+  border: 1px solid var(--theme-line, #263450);
+  background: rgba(154, 171, 199, 0.08);
+  color: var(--theme-muted, #9aabc7);
+  font-size: 0.9rem;
 }
 
 .error-banner {
-  border-color: rgba(255, 143, 143, 0.5);
+  border-color: rgba(255, 143, 143, 0.45);
   background: rgba(255, 143, 143, 0.08);
   color: var(--danger);
 }
 
+.archive-note span,
 .demo-banner span,
 .error-banner span {
   flex: 1;

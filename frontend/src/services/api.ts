@@ -200,7 +200,7 @@ export class EchoesApiClient {
 
       throw new ApiRequestError(
         'NETWORK_ERROR',
-        'Could not reach the Echoes API. The local demo dataset is available.',
+        'Could not reach the Echoes API. The verified local archive dataset is available.',
         { originalError: error },
       );
     } finally {

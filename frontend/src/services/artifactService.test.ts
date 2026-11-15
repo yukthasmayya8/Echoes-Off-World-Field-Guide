@@ -45,7 +45,7 @@ describe('ArtifactService', () => {
 
     const catalog = await service.getArtifacts();
     expect(catalog.source).toBe('demo');
-    expect(catalog.notice).toContain('DEMO MODE');
+    expect(catalog.notice).toContain('verified local archive');
     expect(catalog.data.count).toBe(4);
 
     const search = await service.searchCatalog('sojour');
